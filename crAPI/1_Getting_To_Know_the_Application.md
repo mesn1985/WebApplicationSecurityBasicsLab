@@ -38,4 +38,4 @@ You should now be able to see the vehicle image, details and location.
 This is the basic operation of the application, from the end users perspective.
 You should now spend some time exploring the application on your own.
 
-
+![General use case](./Images/crAPI_Use_Case_Diagram.drawio.svg)
