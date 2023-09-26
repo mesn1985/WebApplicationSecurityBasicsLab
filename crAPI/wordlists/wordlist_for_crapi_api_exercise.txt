@@ -1,0 +1,8 @@
+/robots.txt
+/sitemap.xml
+/robots.txt
+/identity
+/images
+/robots.txt
+/workshop
+/.env
