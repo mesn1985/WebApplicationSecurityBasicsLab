@@ -46,7 +46,7 @@ _You know this from the docker setup. But the purpose here is to learn how to us
 In this exercise, you will use the enumeration tool [Gobuster](https://www.kali.org/tools/gobuster/) along with the wordlist `common.txt` from [SecLists](https://www.kali.org/tools/seclists/),
 to discover available URL paths on crAPI.
 
-Most likely you will encounter two error. The first one is crAPI is using a self-signed certificate,
+Most likely you will encounter two error. The first one is crAPI complaining about a self-signed certificate,
 you need to tell Gobuster to [Skip TLS certificate verification](https://3os.org/penetration-testing/cheatsheets/gobuster-cheatsheet/#dir-mode-options).
 The error you will most likely encounter is Gobuster telling you, that crAPI returns [HTTP status code 200](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200)
 with non-existing path. Essentially meaning that code 200 OK will always be returned, so every path from the wordlist will seem valid in Gobusters scan. To circumvent this 
@@ -76,7 +76,7 @@ Now you have your own specific wordlist for crAPI which you can execute any time
 but i provides you with an overview of the available paths. And you even discovered a single vulnerability along the way. 
   
 ## 5 Enumerating crAPI with ZAP.
-(OWasp ZAP)[https://www.zaproxy.org/] is a open source web analysis tool. Unlike [Burp suite](https://portswigger.net/burp), you don't have to pay for the full functionality of the application.
+[OWasp ZAP](https://www.zaproxy.org/) is a open source web analysis tool. Unlike [Burp suite](https://portswigger.net/burp), you don't have to pay for the full functionality of the application.
 One of ZAPs uses is automated scanning a web applications, creating a site map and detecting potential vulnerabilities. In this exercise ZAP will be used for discovery against crAPI.
 
 If you wish to familiarize yourself with the basics of ZAP [here](https://www.zaproxy.org/getting-started/) in the section _Running an automated scan_  
