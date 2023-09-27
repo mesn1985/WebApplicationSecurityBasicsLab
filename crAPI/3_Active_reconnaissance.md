@@ -34,7 +34,7 @@ Use [NMap](https://nmap.org/) to perform a scan with the [default scripts and ve
 and output to an [xml file](https://nmap.org/book/man-output.html).
   
 The output of the scan will be to big to make sense of in the console. You should use a text editor to review the
-output file. For instance i use [vscode](https://code.visualstudio.com/).
+output file. For instance i use [vscode](https://code.visualstudio.com/), the setup is documented [here](https://code.visualstudio.com/docs/remote/wsl).
 _If you are using Kali on WSL, and you already have vscode installed on the windows host, you can simply type code <Name of output file>_
 
 Once you have opened the output file. Try to identify which port belongs to Juice shop, and which port belongs to crAPI.
