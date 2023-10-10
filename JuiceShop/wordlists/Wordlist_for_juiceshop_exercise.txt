@@ -100,3 +100,9 @@
 /api/v1/monitoring/address-check
 /Video
 /Promotion
+/api-docs/swagger.json
+/api-docs/swagger.json.bak
+/api-docs/swagger.json.bak2
+/api-docs/swagger.json.old
+/api-docs/swagger.json.1
+
