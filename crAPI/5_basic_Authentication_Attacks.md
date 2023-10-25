@@ -22,10 +22,10 @@ Perform the following actions:
 3. Using burp suite, capture a crAPI login request.
 4. Send the login request to Intruder. (Similar to the way you send a request to repeater)
 5. Go to intruder
-6. select _Sniper_ as _Attack type_ (See Step 4 in the [basic introduction](https://portswigger.net/burp/documentation/desktop/tools/intruder/getting-started)
+6. select _Sniper_ as _Attack type_ (See Step 4 in the [basic introduction](https://portswigger.net/burp/documentation/desktop/tools/intruder/getting-started) )
 7. In the content body of the request, set the email value to match the email of the user you created in step 2.
 8. In the content body of the request Highlight mark the value of password, and click the add button on the right site (See Step 3 in the [basic introduction](https://portswigger.net/burp/documentation/desktop/tools/intruder/getting-started)
-9. switch to _Payloads_
+9. switch to _Payloads_ tab
 10. Ensure that _Payload set_ are set to 1, and _Payload type_ is set to _Simple list_
 11. In the payload Settings, load the password wordlist you create in step 1.
 12. In the payload Settings, in the bottom, uncheck _URL-encode these characters_ **Always remember this**
@@ -108,7 +108,7 @@ will increase the likely hood of discovering a password.
 Perform the following actions:
 1. Create a crAPI user (Or reuse one of the previous created users)
 2. Create a wordlist of 5 likely passwords (one being the password of the user from step 1)
-3. Create a wordlist of all known crAPI users email adresses (Use the Excessive data exposure vulnerability you found in [2 Exploiting BOLA and Excessive data exposure](2_Exploiting_BOLA_And_Excessive_Data_Exposure.md))
+3. Create a wordlist of all known crAPI users email adress (Use the Excessive data exposure vulnerability you found in [2 Exploiting BOLA and Excessive data exposure](2_Exploiting_BOLA_And_Excessive_Data_Exposure.md))
 4. add the email address of the user from step 1 to the wordlist
 5. In Burp suite, capture a login request, and send it to intruder
 6. In the content body of the request highlight mark the value of email, and click the add button on the right site.
