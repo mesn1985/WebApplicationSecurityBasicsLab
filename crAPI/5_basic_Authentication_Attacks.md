@@ -71,7 +71,7 @@ no password is safe against this attack.
 
 Perform the following actions:
 
-1. Go the website (https://www.grc.com/haystack.htm)[https://www.grc.com/haystack.htm] and see how long the brute force of 
+1. Go the website [https://www.grc.com/haystack.htm](https://www.grc.com/haystack.htm) and see how long the brute force of 
   the password passwd might take (worst case).
 2. Add a single alphabetic character. And note how much the time increases.
 3. Add a single special character. And note how much the time increases. 

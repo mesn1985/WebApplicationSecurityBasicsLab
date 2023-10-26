@@ -10,7 +10,7 @@ Then you will enumerate crAPI to determine available url paths.
 The [setup of the lab](../README.md) should be completed.
 
 The wordlists from [Seclist](https://www.kali.org/tools/seclists/) should be install
-along with [Gobuster](https://www.kali.org/tools/gobuster/) on a Kali Linux instance(I use Kali on WSL for convenience).
+along with [Gobuster](https://www.kali.org/tools/gobuster/) on a Kali Linux instance(I use [Kali](https://www.kali.org/docs/wsl/wsl-preparations/) on WSL for convenience).
 
 The wordlist used in these exercise can be found on the following paths:
 - `/usr/share/wordlists/seclists/Discovery/Web-Content/common.txt`
