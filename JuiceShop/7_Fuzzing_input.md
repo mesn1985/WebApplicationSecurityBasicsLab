@@ -14,9 +14,9 @@ this exercise.
 ;
 OR 1==1
 ```
-3. use the created wordlist to fuzz the password, what responses are there? those the body any of them contain anything intersting?
+3. use the created wordlist to fuzz the password, what responses are there? does the body in any of the responses contain anything intersting?
 
-if there was no interesting response fuzzing the password, lets try it with the user  name instead.
+if there was no interesting responses fuzzing the password, lets try it with the user  name instead.
 
 1. set the password to a static value again
 2. fuzz the user name with the created wordlist.
