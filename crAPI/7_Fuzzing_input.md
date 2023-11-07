@@ -31,7 +31,7 @@ code with this content length should be ignored.
   
 If there is no hits, maybe they are not using a SQL database. Let try with some NoSql queries also.
 
-_With the NOsql injection attack, Encapsulating shuold be omitted from the payload in intruder" "_
+_With the NOsql injection attack, Encapsulating " " should be omitted from the payload in intruder_
 
 1. Create a small wordlist for noSQL, with the values below:
 ```
