@@ -37,8 +37,8 @@ perform the following actions in the site [https://jwt.io/](https://jwt.io/):
 3. Copy the encoded jwt header, and decode it in a base64 decoder, What values do you see?
 4. Copy the encoded jwt payload, and decode it in a base64 decoder, What values do you see?
 
-As you see, the header and the payload simply plain text that is base64 encoded. In some cases, the 
-role (which grants authorization) is defined without the jwt. Meaning that the security of the application
+As you see, the header and the payload is simply plain text that is base64 encoded. In some cases, the 
+role (which grants authorization) is defined within the jwt. Meaning that the security of the application
 using the token, relies fully on the signature of the JWT token.
 
 

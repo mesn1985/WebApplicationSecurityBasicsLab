@@ -44,7 +44,7 @@ authenticating towards Juice shop, we know that authentication requires an email
 The user id of the admin is a qualified guess. The User id in the application i assigned inclemently. This could be discovered by creating User A, whom
 received the id 50, and thereafter creating User B whom received the id 51. Guessing that admin is the first account created, the id must be 1 (or 0).
 
-1. Resend the request, and confirm that you do not receive response code 200. (204 instead)
+1. Resend the request, and confirm that you do not receive response code 200. (304 instead)
 
 Next we will remove the signature from the JWT, and change the used algorithm (defined in the header) to `none`. 
 You could do this manually by changing the value of `alg` in the header to `none` and completely remove the signature
