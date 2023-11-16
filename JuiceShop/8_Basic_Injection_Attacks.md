@@ -43,8 +43,8 @@ The result shows that the font size in the search result have changed, which mea
 the input is not [HTML encoded](https://www.w3schools.com/html/html_charset.asp) and the
 browser therefor have accepted the input string as valid HTML. To prove this do the following:
 
-1. In the search bar, input the string '&#60;h6&#62;hey&#60;/h6&#62'
-2. Review the result, which should be '<h6>hey</h6>'.
+1. In the search bar, input the string ```&#60;h6&#62;hey&#60;/h6&#62```
+2. Review the result, which should be ```<h6>hey</h6>```.
 
 Knowing that the application is vulnerable to XSS, lets try to inject a simple script into
 the search field.
