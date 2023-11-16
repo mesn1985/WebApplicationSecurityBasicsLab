@@ -37,7 +37,7 @@ is not affected by this attack. The main goal of this types of attacks is to ste
 user of the browser. E.g. Credentials. 
 
 1. in the search bar, input the string `hey` and view the result.
-2. in the search bar, input the string ´<h6>hey</h6>´ and view the result
+2. in the search bar, input the string ```<h6>hey</h6>``` and view the result
 
 The result shows that the font size in the search result have changed, which means that  
 the input is not [HTML encoded](https://www.w3schools.com/html/html_charset.asp) and the
