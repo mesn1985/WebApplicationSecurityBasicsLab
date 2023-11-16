@@ -23,4 +23,4 @@ If you are able to change it, can you test the applications lexical input valida
 And how about the semantics, can you change price to something that does not make sense,
 like negativ values?
 
-_Hint: resource locators are often placed in the URL_
+_Hint: Resource locators are often placed in the URL_
