@@ -9,7 +9,7 @@ In the [Fuzzing input exercise](7_Fuzzing_input.md) you discovered that the user
 In this exercise you will exploit that.
 
 Perform the following actions:
-1. In the juiceshop web application, authenticate in with `'` as username, and the password `123` and capture the response.
+1. In the juiceshop web application, authenticate with `'` as username, and the password `123` and capture the response.
 2. Inspect the response (Should be error code 500). What type of error is it?
 3. Locate the sql string in the response, and copy it to notepad.
 4. In the sql string you copied to notepad, replace the value of email with `' OR TRUE --`, what does this sql string do?
