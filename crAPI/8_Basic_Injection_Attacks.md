@@ -38,7 +38,7 @@ of the used relational database.
 3. Review the reply, and google which type of database the specified database is.
 
 It is not uncommon for web applications to use multiple types of database, e.g. relational and NoSql database.
-Obisvisouly this vulnerability are easy to exploit, when you know they exist, but finding these rather simple
+Obisvisouly these vulnerabilities are easy to exploit, when you know they exist, but finding these rather simple
 vulnerabilities without any prior knowledge would be rather hard. Then it is better to review the code of the 
 application, to determine if proper input validation is used, Objects upholds invariance, or either parameterized statements
 or ORM are used. All of the before mentioned could mitigate this attack, and in combination with each other, create a strong
@@ -51,11 +51,11 @@ by altering the request input. The name of this attack is server side request fo
 but it still qualify as an injection attack, because it depends on what you send to 
 the application. 
 
-No so many clues in  this exercise, so it requires a bit of hacking, but once you find
+Not so many clues in  this exercise, so it requires a bit of tinkering, but once you find
 the solution, you will discover that it is quiet simple.
 
 1. Capture the post request for contact mechanic 
 2. find a way to use the post request making the server calls `https://www.google.dk`
 
-This type of exploit can be avoid by keeping a `request allow list` in the application,
+This type of exploit can be avoided by keeping a `request allow list` in the application,
 ensure that the application can only make request to a selected set of URL's.
