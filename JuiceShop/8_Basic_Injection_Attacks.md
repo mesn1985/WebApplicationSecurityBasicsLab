@@ -21,12 +21,12 @@ Therefor such information should not be exposed. Stack traces and error messages
 2. Go to account information, which user are you authenticated as?
 
 SQL injection attacks can be mitigated in numerous ways. Either use [Parameterized queries](https://learn.microsoft.com/en-us/aspnet/web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/using-parameterized-queries-with-the-sqldatasource-cs),
-or and [ORM (.Net har Entity framework)](https://learn.microsoft.com/en-us/ef/core/). Further more input validation and upholding objects invariance help mitigate SQL (Or noSql) attacks.
+or  [ORM (.Net har Entity framework)](https://learn.microsoft.com/en-us/ef/core/). Furthermore, input validation and upholding objects invariance help mitigate SQL (Or noSql) attacks.
 
 ## Perform the sql injection attack with fuzzing
-The purpose of this exercise is to perform a repetive exercise for the fuzzing technique.
+The purpose of this exercise is to perform a repetive exercise of the fuzzing technique.
 
-1. create a small wordlist with known SQL injection string, including the `' OR TRUE --`.
+1. create a small wordlist with a known SQL injection string, including the `' OR TRUE --`.
 2. Obtain a response 200 code with a fuzzing attack (Using Burp suite or WFuzz).
 
 

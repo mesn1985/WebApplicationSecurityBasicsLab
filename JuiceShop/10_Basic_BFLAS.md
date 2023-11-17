@@ -8,7 +8,7 @@ How does it react to the methods GET, POST and PUT?
 Can you perform any action you where not intended to, such as adding or
 editing resources?
 
-One method call might give you some information about 
+One method call might give you some information about the structure of the requests.
 
 # Add product
 From postman you should be able to add a product, if you use the right 
