@@ -25,5 +25,5 @@ Prior to starting these exercise, you should have completed the exercises in [ba
 ``` 
 7. Send the request, and notice the status of the order.
 
-Besides being a mass assigment vulnerability. This is also BFLA and generally a broken access control vulnerability,becuse a customer can change the state of an order.
+Besides being a mass assigment vulnerability. This is also BFLA and generally a broken access control vulnerability,because a customer can change the state of an order.
 
