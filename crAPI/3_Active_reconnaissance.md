@@ -14,7 +14,7 @@ along with [Gobuster](https://www.kali.org/tools/gobuster/) on a Kali Linux inst
 If you use kali with WSL, you can simply can the loopback address(unless of course default settings have been changed). If you use a virtual machine, you should ensure
 that a NAT is configured between the host and VM.
 
-The wordlist used in these exercise can be found on the following paths:
+If you use WSL Kali Linux, the wordlist used in these exercise can be found on the following paths:
 - `/usr/share/wordlists/seclists/Discovery/Web-Content/common.txt`
 - `/usr/share/wordlists/seclists/Discovery/Web-Content/quickhits.txt`
 
@@ -34,8 +34,7 @@ If you are using the setup provided by this repository, your console output will
 
 This of course provides an overview of which ports have an active service, but there is no insight 
 to what the service actual is. Next exercise you will have to perform a more detailed scan.
-<!-- nmap -p- 127.0.0.1 -oX allportscan -->
-  
+
 ## 2 Nmap service scan
 Use [NMap](https://nmap.org/) to perform a scan with the [default scripts and version detection enabled](https://explainshell.com/explain?cmd=nmap+-sC+-sV+-v+)
 and output to an [xml file](https://nmap.org/book/man-output.html).
@@ -47,7 +46,6 @@ _If you are using Kali on WSL, and you already have vscode installed on the wind
 Once you have opened the output file. Try to identify which port belongs to Juice shop, and which port belongs to crAPI.
 _You know this from the docker setup. But the purpose here is to learn how to use port scans obtain information about services_
 
-<!-- nmap -sC -sV 127.0.0.1 -oA service_scan -->
   
 ## 3 Enumerating crApi with gobuster and the wordlist common.txt
 In this exercise, you will use the enumeration tool [Gobuster](https://www.kali.org/tools/gobuster/) along with the wordlist `common.txt` from [SecLists](https://www.kali.org/tools/seclists/),
@@ -55,7 +53,7 @@ to discover available URL paths on crAPI.
 
 Most likely you will encounter two error. The first one is crAPI complaining about a self-signed certificate,
 you need to tell Gobuster to [Skip TLS certificate verification](https://3os.org/penetration-testing/cheatsheets/gobuster-cheatsheet/#dir-mode-options).
-The error you will most likely encounter is Gobuster telling you, that crAPI returns [HTTP status code 200](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200)
+The second error you will most likely encounter is Gobuster telling you, that crAPI returns [HTTP status code 200](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200)
 with non-existing path. Essentially meaning that code 200 OK will always be returned, so every path from the wordlist will seem valid in Gobusters scan. To circumvent this 
 error you need [Exclude the length](https://hackertarget.com/gobuster-tutorial/) of the default site. This tells Gobuster to ignore response with a specific content length,
 and Gobuster can therefor separate default 200 responses from valid responses. 
@@ -81,6 +79,9 @@ Perform the following tasks:
 
 Now you have your own specific wordlist for crAPI which you can execute any time. The paths on the wordlist does not lead to vulnerabilities(At least not all of them),
 but it provides you with an overview of the available paths. And you even discovered a single vulnerability along the way. 
+  
+There should be fewer results from using the `quickhits.txt` file. This is because the file contains fewer words and different words than `common.txt`, but the  result
+should show that they have at least 1 word in common.
   
 ## 5 Enumerating crAPI with ZAP.
 [OWasp ZAP](https://www.zaproxy.org/) is a open source web analysis tool. Unlike [Burp suite](https://portswigger.net/burp), you don't have to pay for the full functionality of the application.
