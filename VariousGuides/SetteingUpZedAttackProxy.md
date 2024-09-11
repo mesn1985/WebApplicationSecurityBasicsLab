@@ -28,7 +28,17 @@ _When asked if you want to persist the session, just select no._
   
 **Over the years, I've experienced various browser driver issues (e.g., Selenium driver), which can cause problems at times. If you experience any, try restarting your computer.**  
 
-## 2. Running an Automated Scan  
+## 2. Updating Selenium and browser drivers
+When i have experienced issues between ZAP and browsers, i have often been outdated drivers that have caused the issues.
+To avoid this, ensure that the drivers are updated to latest version.
+
+- Click the _Check for updates_ button.  
+[Check for updates button](./Images/CheckForUpdatesButton.jpg)  
+  
+- Check if _Selenium_ or _Windows WebDrivers_ can be updated  
+[Updates screen](./Images/UpdatesScreen.jpg)  
+  
+## 3. Running an Automated Scan  
 ZAP can perform automated scans for potential vulnerabilities against websites and the APIs used by these websites.  
   
 **If you experience any driver issues, try restarting your PC if this is the first time running the automated scan after installing ZAP.**
