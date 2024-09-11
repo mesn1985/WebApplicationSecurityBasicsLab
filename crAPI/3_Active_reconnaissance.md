@@ -79,7 +79,7 @@ but i provides you with an overview of the available paths. And you even discove
 [OWasp ZAP](https://www.zaproxy.org/) is a open source web analysis tool. Unlike [Burp suite](https://portswigger.net/burp), you don't have to pay for the full functionality of the application.
 One of ZAPs uses is automated scanning a web applications, creating a site map and detecting potential vulnerabilities. In this exercise ZAP will be used for discovery against crAPI.
 
-If you wish to familiarize yourself with the basics of ZAP [here](https://www.zaproxy.org/getting-started/) in the section _Running an automated scan_  
+You can familiarize yourself with ZAP, following [this guide](../VariousGuides/SetteingUpZedAttackProxy.md) 
   
 For now there are 3 interesting outputs from the automatic scan that we will pay attention to: The Site map (in the left pane), Alerts (shown in the bottom panes), spider (Or Ajax spider, in the bottom panes).
 
