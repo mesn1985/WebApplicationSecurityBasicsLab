@@ -33,10 +33,10 @@ When i have experienced issues between ZAP and browsers, i have often been outda
 To avoid this, ensure that the drivers are updated to latest version.
 
 - Click the _Check for updates_ button.  
-[Check for updates button](./Images/CheckForUpdatesButton.jpg)  
+![Check for updates button](./Images/CheckForUpdatesButton.jpg)  
   
 - Check if _Selenium_ or _Windows WebDrivers_ can be updated  
-[Updates screen](./Images/UpdatesScreen.jpg)  
+![Updates screen](./Images/UpdatesScreen.jpg)  
   
 ## 3. Running an Automated Scan  
 ZAP can perform automated scans for potential vulnerabilities against websites and the APIs used by these websites.  
