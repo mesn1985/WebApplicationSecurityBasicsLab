@@ -29,7 +29,7 @@ _When asked if you want to persist the session, just select no._
 **Over the years, I've experienced various browser driver issues (e.g., Selenium driver), which can cause problems at times. If you experience any, try restarting your computer.**  
 
 ## 2. Updating Selenium and browser drivers
-When i have experienced issues between ZAP and browsers, i have often been outdated drivers that have caused the issues.
+When i have experienced issues between ZAP and browsers, it have often been outdated drivers that have caused the issues.
 To avoid this, ensure that the drivers are updated to latest version.
 
 - Click the _Check for updates_ button.  
