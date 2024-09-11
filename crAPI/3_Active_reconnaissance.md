@@ -11,6 +11,8 @@ The [setup of the lab](../README.md) should be completed.
 
 The wordlists from [Seclist](https://www.kali.org/tools/seclists/) should be install
 along with [Gobuster](https://www.kali.org/tools/gobuster/) on a Kali Linux instance(I use [Kali](https://www.kali.org/docs/wsl/wsl-preparations/) on WSL for convenience).
+If you use kali with WSL, you can simply can the loopback address(unless of course default settings have been changed). If you use a virtual machine, you should ensure
+that a NAT is configured between the host and VM.
 
 The wordlist used in these exercise can be found on the following paths:
 - `/usr/share/wordlists/seclists/Discovery/Web-Content/common.txt`
@@ -18,11 +20,16 @@ The wordlist used in these exercise can be found on the following paths:
 
 If you wish to familiarize yourself with the basics of Gobuster, you can watch this [introduction tutorial](https://www.youtube.com/watch?v=HjXNK-mYwDQ)
   
+In the Nmap exercises, all output are sent to XML files. You can review these files with any text editor, but i advise to use something
+that provides you with a good overview, such as [vscode](https://code.visualstudio.com/). If you use Kali through WSL, and have vs code installed
+on your windows host, you can open a file in vs code simply by typing `code <filename>` in the Kali console. If that for some reason does not work,
+the setup is documented [here](https://code.visualstudio.com/docs/remote/wsl).
+  
 ## 1 Nmap all ports
 Use [NMap](https://nmap.org/) to [scan all ports](https://nmap.org/book/man-port-specification.html), and send the output to an [xml file](https://nmap.org/book/man-output.html).
 This will give a complete overview of all available ports on the host, and the name of the service available on the port.
 
-If you are using the setup provided by this repository, your output will look somewhat like this:  
+If you are using the setup provided by this repository, your console output will look somewhat like this:  
 ![NMap Full port scan](./Images/NmapFullPortScan.jpg)
 
 This of course provides an overview of which ports have an active service, but there is no insight 
@@ -73,7 +80,7 @@ Perform the following tasks:
 - One of the positive responses lead to an interesting vulnerability. See if you can identify the vulnerability. (You dont have to abuse, just identify it).
 
 Now you have your own specific wordlist for crAPI which you can execute any time. The paths on the wordlist does not lead to vulnerabilities(At least not all of them),
-but i provides you with an overview of the available paths. And you even discovered a single vulnerability along the way. 
+but it provides you with an overview of the available paths. And you even discovered a single vulnerability along the way. 
   
 ## 5 Enumerating crAPI with ZAP.
 [OWasp ZAP](https://www.zaproxy.org/) is a open source web analysis tool. Unlike [Burp suite](https://portswigger.net/burp), you don't have to pay for the full functionality of the application.
@@ -85,6 +92,8 @@ For now there are 3 interesting outputs from the automatic scan that we will pay
 
 Perform the following tasks:
 - Initiate an automated scan (use Ajax spiders) and wait for the scan to complete.
+- Review the site tree in the left site. What information does it provide?
 - Review the alerts. Can you correlate any of the alerts to the vulnerability you discovered in exercise 4?
 - What information can you find in the pane `AJAX Spider`?
+
 
