@@ -29,7 +29,7 @@ Perform the following task:
 - Go to the discovered URL browser around, what information can you find?
 - What is Swagger? and why can could it lead to a potential vulnerability?
   
-## 6 Enumerating juice shop with gobuster and quickhits.txt
+## 5 Enumerating juice shop with gobuster and quickhits.txt
 Perform the following task:
 - Use [Gobuster](https://www.kali.org/tools/gobuster/) to enumerate juice shop with the wordlist `quickhits.txt´ .
 - Append the discovered URL to the wordlist you created in the previous exercise.
