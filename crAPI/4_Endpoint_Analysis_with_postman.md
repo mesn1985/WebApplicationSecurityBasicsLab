@@ -47,7 +47,7 @@ get an error in red text stating that the password needs to comply with a specif
 But interestingly enough, Burp suite does not show request being sent to the backend API this validation. This could potentially mean that 
 the application only validates the password compliance in the frontend(browser), and not in the backend API. You should find out, by experimenting.
   
-With the post _signup_ request, try to see if you can create a user, with a password length of 4, that only contains alphabetic characters, this might
+With the POST _signup_ request, try to see if you can create a user, with a password length of 4, that only contains alphabetic characters, this might
 give you some guidance on how the backend API validates the compliances of new passwords, by reading the returned message.
 
 ## 4 - Using postman as an authenticated user.

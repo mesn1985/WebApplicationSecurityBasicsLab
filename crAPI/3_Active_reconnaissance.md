@@ -96,5 +96,3 @@ Perform the following tasks:
 - Review the site tree in the left site. What information does it provide?
 - Review the alerts. Can you correlate any of the alerts to the vulnerability you discovered in exercise 4?
 - What information can you find in the pane `AJAX Spider`?
-
-
