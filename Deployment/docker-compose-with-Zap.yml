@@ -9,8 +9,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 # Tested with docker desktop on windows 
-# Run solution with docker compose: docker-compose -f docker-compose.yml --compatibility up -d 
+# Deploy enviroment locally with docker compose: docker-compose -f docker-compose-with-zap.yml --compatibility up -d 
 
 
 services:
@@ -319,7 +320,10 @@ services:
   #Configuration of zed attack proxy
   #Enter the web GUI on local deployment on URL: http://127.0.0.1:8081/zap/
   #URL for services called from ZAP is: <Protocol>://<Docker compose service name>:<port>
+  # NOTE!: The ports mapped to the host is not usable from within ZAP, meaning that the port mapping is no longer valid
+  # E.g. crAPI's port mapping of is <Host Port>:<container port> 8443:443. from within zap, port 443 should be used
   #Example URL with juiceshop from within ZAP: http://juiceshop:3000
+  #Example URL with crAPI from within ZAP: https://crapi-web:443
   zap:
     image: ghcr.io/zaproxy/zaproxy:stable
     ports:
