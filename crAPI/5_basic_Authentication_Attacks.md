@@ -19,8 +19,8 @@ The approach of this exercise is also described in the section _Running a dictio
 Perform the following actions:
 1. Create a wordlist with 20 passwords of your own choosing that fits the password policy of crAPI
 2. Create an user with a password from your password wordlist file.
-3. Using burp suite, capture a crAPI login request.
-4. Send the login request to Intruder. (Similar to the way you send a request to repeater)
+3. Using burp suite, capture a crAPI authentication request.
+4. Send the authentication request to Intruder. (Similar to the way you send a request to repeater)
 5. Go to intruder
 6. select _Sniper_ as _Attack type_ (See Step 4 in the [basic introduction](https://portswigger.net/burp/documentation/desktop/tools/intruder/getting-started) )
 7. In the content body of the request, set the email value to match the email of the user you created in step 2.
@@ -110,7 +110,7 @@ Perform the following actions:
 2. Create a wordlist of 5 likely passwords (one being the password of the user from step 1)
 3. Create a wordlist of all known crAPI users email adress (Use the Excessive data exposure vulnerability you found in [2 Exploiting BOLA and Excessive data exposure](2_Exploiting_BOLA_And_Excessive_Data_Exposure.md))
 4. add the email address of the user from step 1 to the wordlist
-5. In Burp suite, capture a login request, and send it to intruder
+5. In Burp suite, capture a authentication request, and send it to intruder
 6. In the content body of the request highlight mark the value of email, and click the add button on the right site.
 7. In the content body of the request Highlight mark the value of password, and click the add button on the right site.
 8. Set the _Attack type_ to _Cluster bomb_
