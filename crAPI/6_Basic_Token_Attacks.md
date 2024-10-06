@@ -66,4 +66,3 @@ Next, we will see if we can create a new password using the manipulated token.
 
 The return message is a code 401 stating that the token is invalid, so this approach did not work,
 indicating that the token validation works in this part of the application.
-
