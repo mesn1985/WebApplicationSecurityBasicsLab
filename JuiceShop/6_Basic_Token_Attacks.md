@@ -1,11 +1,11 @@
-# Basic attacks against authentication token in crAPI
+# Basic attacks against authentication token in Juice shop
 The purpose of these exercise are to demonstrate some basic attacks against authentication tokens.
 The token type used in these exercises are jwt tokens, these are widely used.
 
 You can get a basic introduction to JWT tokens [here](https://auth0.com/docs/secure/tokens/json-web-tokens).
 
 ## prerequisites
-You should have completed the exercise in with [crAPI authentication attacks](../crAPI/6_Basic_Token_Attacks.md),
+You should have completed the exercise in with [crAPI authentication token attacks](../crAPI/6_Basic_Token_Attacks.md),
 before starting these exercises.
 
 ### Manipulating and abusing unsigned tokens

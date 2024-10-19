@@ -4,7 +4,7 @@ for testing API's. None the less, postman have several useful features when anal
 One of these features are the ability to create collections of request, which is connivent for reusing HTTP requests
 sent to API endpoints, and thereby avoid having to recreate the requests through a browser or by hand. 
 
-In these exercises you will interact with crAPI Using Postman (And a bit of repetition with Burp suite)
+In these exercises you will interact with crAPI Using Postman (And at the same time,  do a bit of repetition with Burp suite)
 
 ## prerequisites
 The Exercises [2 Exploiting BOLA and Excessive data exposure](2_Exploiting_BOLA_And_Excessive_Data_Exposure.md) and [3 Active reconnaissance](3_Active_reconnaissance.md) should
@@ -101,7 +101,7 @@ Perform the following actions
 8. In the Shop, buy a seat, and use the `Past Orders` feature.
 9. In the Community, create a `New Post`
 10. Use the browser extension to stop capturing requests. (Verify that capturing have stopped in post man)
-11. In postman, tick off all of the request, and click on the `+ Add to collection` in the upper right corner.
+11. In postman, tick off all of the request, and click on the `+ save request` in the upper right corner.
 12. Click the `CRapi-automated` as the collection you want to add to.
 13. In the _Organize by request windows_, tick off both `Domain name` and `Endpoints` and click save.
 14. Now you have all the requests send from the browser to the api, in a ready to use collection.

@@ -42,7 +42,7 @@ role (which grants authorization) is defined within the jwt. Meaning that the se
 using the token, relies fully on the signature of the JWT token.
 
 
-##### Manipulate the payload
+## Manipulate the payload
 In this exercise you will abuse a vulnerability which allows an attacker to bypass signature verification,
 by disabling the JWT signature check. 
 
@@ -66,4 +66,3 @@ Next, we will see if we can create a new password using the manipulated token.
 
 The return message is a code 401 stating that the token is invalid, so this approach did not work,
 indicating that the token validation works in this part of the application.
-
