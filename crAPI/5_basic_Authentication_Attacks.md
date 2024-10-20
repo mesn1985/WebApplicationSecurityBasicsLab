@@ -122,3 +122,78 @@ Perform the following actions:
 14. In the upper right corner, click _Start attack_
 15. Observer the attempted combination of usernames and password.
 16. Find the one(s) that returned status code 200.
+  
+## Attacking Password Recovery and OTP
+
+The purpose of this exercise is to give a brief introduction to how password recovery mechanisms can be abused. The crAPI application allows for password recovery using a _One-Time Password_ (OTP), which is sent to a user's email upon request.
+
+The exercise is divided into multiple sections.
+
+In this exercise, you will need to reuse previously learned skills, such as manipulating requests and using wordlists. For example, with Burp Suite, you would use _Repeater_ and _Intruder_, while with ZAP, you would use _Requestor_ and _Fuzzer_.
+
+### Getting to Know crAPI's "Forgot Password" Feature
+
+This section will introduce the process of obtaining a new password for a user by changing the password.
+
+1. Create a user on the crAPI website.
+2. Go to the authentication form and click `Forgot Password?`
+3. On the _Forgot Password?_ page, you will be prompted for an email. Use the email of the user created in step 1.
+4. You will be prompted for _OTP_, _Password_, and _Re-enter Password_. Leave this page open for the next step.
+5. In a new tab, go to `Mailhoq` and open the latest email with the subject _crAPI OTP_, then copy the `OTP` value from this email.
+6. Go back to the tab from step 4, paste in the OTP value, and enter the new password.
+7. Go to the crAPI authentication site and enter the email address of the user from step 1 along with the new password.
+8. Verify that you successfully authenticated with the new password.
+
+To summarize the process: a user can request an OTP, which allows for a password change. The security of the _Forgot Password_ feature should rely on _Something You Have_, which is access to a user's email account. The _OTP_ obtained seems fairly weak in terms of password strength. It is only 4 characters long and consists only of digits. Investigate if this is the case for all OTPs issued by the _Forgot Password_ feature of crAPI:
+
+1. Request 3 more OTPs to verify if these OTPs are also 4 characters long and consist only of digits.
+
+The expected result is that the 3 new OTPs are also 4 characters long and consist only of digits. This indicates that the issued OTPs are weak in terms of password strength and could potentially be brute-forced. In the next steps, you will experiment with brute-forcing the OTP.
+
+### Verifying if OTP Can Be Brute Forced
+
+1. Use the _Forgot Password_ feature to request a new OTP.
+2. Enter a wrong OTP and capture the _POST_ request used for changing the password (the request that contains the new password and the OTP).  
+   The request is sent to `/identity/api/auth/v3/check-otp`.
+3. Resend the request 10 times and notice that the response code changes from `500` to `502`.
+4. Read the message in the response with error code `502`.
+
+The message indicates that there is a maximum number of tries when authenticating for password changes using an OTP. There is a maximum of 10 attempts for changing the password with an OTP. With the OTP values ranging from 0000 to 9999, the chances of guessing the OTP are somewhat small (1 in 10000) if we want to perform a brute-force attack with all possible values. Although this might seem like a dead end, or at least not the most convenient way to gain access, there is something interesting in the _Path_ used in the request for changing the password with OTP. The path is `/identity/api/auth/v3/check-otp`, where _v<number>_ is a known way of indicating the API version in the URL. So, there might be an older version of the API available.
+
+### Using an Older Version of the API
+
+1. Use the _Forgot Password_ feature to request a new OTP.
+2. Enter a wrong OTP and capture the _POST_ request used for changing the password (the request that contains the new password and the OTP).
+3. Change the version number in the _Path_ to `v2`.
+4. Resend the request 10 times and verify that the response code does not change from `500` to `502`.
+
+This indicates that version 2 of the API does not enforce a maximum number of tries, so using version 2 of the API might be prone to a brute-force attack.
+
+### Creating a Wordlist with All Possible Combinations of OTP
+
+The OTP consists of 4 characters, and all 4 characters are digits, so creating a wordlist with all possible combinations should be a somewhat trivial task. Below are two examples, using Bash or PowerShell.
+
+**PowerShell:**
+
+```powershell
+1..9999 | ForEach-Object { "{0:D4}" -f $_ } | Out-File -FilePath "wordlist.txt" -Encoding utf8
+```
+
+**Bash:**
+
+```bash
+for i in $(seq -f "%04g" 0 9999); do echo $i; done | iconv -f UTF-8 -t UTF-8 > wordlist.txt
+```
+
+Notice that both shell executions convert the output to UTF-8 format. UTF-8 is the output format of most shells, but the explicit conversion to UTF-8 ensures that no complications will arise due to the odd case of not having UTF-8 as the output format in the shell.
+
+### Brute Forcing the OTP
+
+You should now attempt to brute force the OTP using the wordlist. I suggest using either Burp Suite or ZAP for convenience, but any tool that allows for sending HTTP requests with values replaced by a wordlist can work. You should take the following steps:
+
+1. Create a new request for OTP using the _Forgot Password_ feature.
+2. Capture a request for the _OTP check_ with a wrong OTP value.
+3. Change the path in the _OTP check_ request to use version 2 of the API and brute force with the wordlist of all possible OTP combinations.
+4. Await a status 200 return code, which confirms that the password has been changed.
+
+The end result should be a successful change of the password. The exploit resulted from two vulnerabilities: the first vulnerability was the weak password strength of the OTP, and the second was a legacy API (version 2) that was still in use, which did not enforce a maximum number of attempts on OTP checks. In the case of the latter, it is common to keep previous versions of an API along with a newer version to avoid breaking other external systems that integrate with the API. An API update might introduce changes that are not compatible with the way other systems use the API, potentially disrupting continuity in the system. However, in the case of the OTP max attempts, the update from version 2 to 3 was a security update and should have been strictly enforced.
