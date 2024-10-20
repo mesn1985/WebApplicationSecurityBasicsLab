@@ -154,7 +154,7 @@ The expected result is that the 3 new OTPs are also 4 characters long and consis
 
 1. Use the _Forgot Password_ feature to request a new OTP.
 2. Enter a wrong OTP and capture the _POST_ request used for changing the password (the request that contains the new password and the OTP).  
-   The request is sent to `/identity/api/auth/v3/check-otp`.
+   _The request is sent to `/identity/api/auth/v3/check-otp`_
 3. Resend the request 10 times and notice that the response code changes from `500` to `502`.
 4. Read the message in the response with error code `502`.
 
