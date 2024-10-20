@@ -30,9 +30,11 @@ The general pattern to be observed here, is which content length should be ignor
 code with this content length should be ignored. 
   
 If there is no hits, maybe they are not using a SQL database. Let try with some NoSql queries also.
-
-_With the NOsql injection attack, Encapsulating " " should be omitted from the payload in intruder_
-
+  
+It is important to note With the NOsql injection attack, Encapsulating " " should be omitted from the request payload value,
+because NoSql Injection is more like an arbitary code injection attack, than a string manipulation attack (Such as SQL Inject).
+In short, it is not a string you are injecting.
+  
 1. Create a small wordlist for noSQL, with the values below:
 ```
 true, $where: '1 == 1'
