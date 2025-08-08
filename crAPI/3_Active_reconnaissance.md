@@ -1,98 +1,162 @@
-# Active Reconnaissance With crAPI
+# 🔎 Active Reconnaissance with crAPI
 
-Active reconnaissance is about finding the attack surfaces of a system.
-In these exercises you will do reconnaissance by find scanning all the ports of
-a host, and afterwards scanning for active services on the host.
-Then you will enumerate crAPI to determine available url paths.
+### 🎯 Objective
+Understand the role of active reconnaissance in API testing.  
+Learn how to discover attack surfaces using tools like Nmap, Gobuster, and ZAP.  
+Identify exposed ports, services, and undocumented URL paths that may be vulnerable in real-world environments.
 
-## prerequisites
+---
+
+Active reconnaissance is about identifying the attack surfaces of a system.  
+In these exercises, you will begin by first scanning all the ports of a host and identifying running services.  
+Afterwards, you will enumerate crAPI to determine available URL paths.
+
+> 🛡️ **Why this matters in the real world:**  
+> Reconnaissance is often the first phase in a real attack.  
+> Testers use it to uncover legacy endpoints, undocumented features, and exposed services — before attackers do.  
+> Understanding how to perform and interpret scans is a critical step in both offensive and defensive API security.
+
+## Prerequisites
 
 The [setup of the lab](../README.md) should be completed.
 
-The wordlists from [Seclist](https://www.kali.org/tools/seclists/) should be install
-along with [Gobuster](https://www.kali.org/tools/gobuster/) on a Kali Linux instance(I use [Kali](https://www.kali.org/docs/wsl/wsl-preparations/) on WSL for convenience).
-If you use kali with WSL, you can simply can the loopback address(unless of course default settings have been changed). If you use a virtual machine, you should ensure
-that a NAT is configured between the host and VM.
+The wordlists from [SecLists](https://www.kali.org/tools/seclists/) should be installed  
+along with [Gobuster](https://www.kali.org/tools/gobuster/) on a Kali Linux instance  
+(I use [Kali](https://www.kali.org/docs/wsl/wsl-preparations/) on WSL for convenience).
 
-If you use WSL Kali Linux, the wordlist used in these exercise can be found on the following paths:
+If you use Kali with WSL, you can simply scan the loopback address (unless default settings have been changed).  
+If you use a virtual machine, ensure that a NAT is configured between the host and VM.
+
+Wordlist paths in WSL:
 - `/usr/share/wordlists/seclists/Discovery/Web-Content/common.txt`
 - `/usr/share/wordlists/seclists/Discovery/Web-Content/quickhits.txt`
 
-If you wish to familiarize yourself with the basics of Gobuster, you can watch this [introduction tutorial](https://www.youtube.com/watch?v=HjXNK-mYwDQ)
-  
-In the Nmap exercises, all output are sent to XML files. You can review these files with any text editor, but i advise to use something
-that provides you with a good overview, such as [vscode](https://code.visualstudio.com/). If you use Kali through WSL, and have vs code installed
-on your windows host, you can open a file in vs code simply by typing `code <filename>` in the Kali console. If that for some reason does not work,
-the setup is documented [here](https://code.visualstudio.com/docs/remote/wsl).
-  
-## 1 Nmap all ports
-Use [NMap](https://nmap.org/) to [scan all ports](https://nmap.org/book/man-port-specification.html), and send the output to an [xml file](https://nmap.org/book/man-output.html).
-This will give a complete overview of all available ports on the host, and the name of the service available on the port.
+To familiarize yourself with Gobuster, you can watch this [intro tutorial](https://www.youtube.com/watch?v=HjXNK-mYwDQ)
+
+In the Nmap exercises, all output is sent to XML files. Review these files with any text editor —  
+I recommend [VS Code](https://code.visualstudio.com/). If using Kali via WSL, you can open a file in VS Code using:
+```
+code <filename>
+```
+If this doesn't work, follow the [WSL integration guide](https://code.visualstudio.com/docs/remote/wsl).
+
+---
+
+## 1 – Nmap: Full Port Scan
+
+Use [Nmap](https://nmap.org/) to [scan all ports](https://nmap.org/book/man-port-specification.html) and output the results to an [XML file](https://nmap.org/book/man-output.html).  
+This will give you a complete overview of all available ports on the host and the name of the service running on each.
 
 If you are using the setup provided by this repository, your console output will look somewhat like this:  
-![NMap Full port scan](./Images/NmapFullPortScan.jpg)
+![Nmap Full port scan](./Images/NmapFullPortScan.jpg)
 
-This of course provides an overview of which ports have an active service, but there is no insight 
-to what the service actual is. Next exercise you will have to perform a more detailed scan.
+> 💡 **Hint:** Look for the `-p-` option in the port specification docs and `-oX` in the output options to construct the full command.
 
-## 2 Nmap service scan
-Use [NMap](https://nmap.org/) to perform a scan with the [default scripts and version detection enabled](https://explainshell.com/explain?cmd=nmap+-sC+-sV+-v+)
-and output to an [xml file](https://nmap.org/book/man-output.html).
-  
-The output of the scan will be to big to make sense of in the console. You should use a text editor to review the
-output file. For instance i use [vscode](https://code.visualstudio.com/), the setup is documented [here](https://code.visualstudio.com/docs/remote/wsl).
-_If you are using Kali on WSL, and you already have vscode installed on the windows host, you can simply type code <Name of output file>_
+> 💡 **Tip: Use a clear naming convention**  
+> To stay organized, name your Nmap output files descriptively.  
+> For example:  
+> - `nmap_full.xml` for your full port scan  
+> - `nmap_services.xml` for your version detection scan  
+> This helps you keep track of multiple scan results during larger investigations.
 
-Once you have opened the output file. Try to identify which port belongs to Juice shop, and which port belongs to crAPI.
-_You know this from the docker setup. But the purpose here is to learn how to use port scans obtain information about services_
+---
 
-  
-## 3 Enumerating crApi with gobuster and the wordlist common.txt
-In this exercise, you will use the enumeration tool [Gobuster](https://www.kali.org/tools/gobuster/) along with the wordlist `common.txt` from [SecLists](https://www.kali.org/tools/seclists/),
-to discover available URL paths on crAPI.
+## 2 – Nmap: Service Version Detection
+Use [Nmap](https://nmap.org/) to perform a scan with [default scripts and version detection](https://explainshell.com/explain?cmd=nmap+-sC+-sV+-v+), saving the results to an XML file.
 
-Most likely you will encounter two error. The first one is crAPI complaining about a self-signed certificate,
-you need to tell Gobuster to [Skip TLS certificate verification](https://3os.org/penetration-testing/cheatsheets/gobuster-cheatsheet/#dir-mode-options).
-The second error you will most likely encounter is Gobuster telling you, that crAPI returns [HTTP status code 200](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200)
-with non-existing path. Essentially meaning that code 200 OK will always be returned, so every path from the wordlist will seem valid in Gobusters scan. To circumvent this 
-error you need [Exclude the length](https://hackertarget.com/gobuster-tutorial/) of the default site. This tells Gobuster to ignore response with a specific content length,
-and Gobuster can therefor separate default 200 responses from valid responses. 
-  
-Gobuster is a very agressive scanner and therefor also very noise (Easily detected by Intrusion dection system). To make Gobuster
-less noisy you could use [delay](https://hackertarget.com/gobuster-tutorial/) to set the time between each send request.
+The output will likely be too large to read directly in the terminal. Open the XML file using a text editor like VS Code.
 
-Perform the following task:
-- Use [Gobuster](https://www.kali.org/tools/gobuster/) to enumerate crAPI with the wordlist common.txt. **Remember that crAPI use the HTTPS protocol**
-- Create a file called `crAPI_wordlist.txt` and add the path of all the positive responses to it(status code 200's and 300's).
+Try to identify which ports belong to Juice Shop and which to crAPI.  
+You already know this from the Docker setup, but here the goal is to **practice interpreting scan results like a security analyst**.
 
-You are now building your own specific crAPI wordlist using the paths you know have discovered exists.
+> 💡 **Hint:** Explore the docs for `-sC` (script scan), `-sV` (version detection), and `-oX` (XML output).
 
-_At least one of the resulting url paths are interesting, but for now we will just focus on discovery_
-  
-## 4 Enumerating crAPI with gobuster and the wordlist quickhits.txt
-In this exercise you should repeat exercise 3, but use the wordlist `quickhits.txt` instead of `common.txt`.
+---
 
-Perform the following tasks:
-- Use [Gobuster](https://www.kali.org/tools/gobuster/) to enumerate crAPI with the wordlist quickhits.txt.
-- add the path of all the positive responses to it(status code 200's and 300's) to the `crAPI_wordlist.txt`.
-- One of the positive responses lead to an interesting vulnerability. See if you can identify the vulnerability. (You dont have to abuse, just identify it).
+## 3 – Enumerating crAPI with Gobuster and the Wordlist `common.txt`
 
-Now you have your own specific wordlist for crAPI which you can execute any time. The paths on the wordlist does not lead to vulnerabilities(At least not all of them),
-but it provides you with an overview of the available paths. And you even discovered a single vulnerability along the way. 
-  
-There should be fewer results from using the `quickhits.txt` file. This is because the file contains fewer words and different words than `common.txt`, but the  result
-should show that they have at least 1 word in common.
-  
-## 5 Enumerating crAPI with ZAP.
-[OWasp ZAP](https://www.zaproxy.org/) is a open source web analysis tool. Unlike [Burp suite](https://portswigger.net/burp), you don't have to pay for the full functionality of the application.
-One of ZAPs uses is automated scanning a web applications, creating a site map and detecting potential vulnerabilities. In this exercise ZAP will be used for discovery against crAPI.
+Use the enumeration tool [Gobuster](https://www.kali.org/tools/gobuster/) with the wordlist `common.txt` from [SecLists](https://www.kali.org/tools/seclists/) to discover available URL paths.
 
-You can familiarize yourself with ZAP, following [this guide](../VariousGuides/SetteingUpZedAttackProxy.md) 
-  
-For now there are 3 interesting outputs from the automatic scan that we will pay attention to: The Site map (in the left pane), Alerts (shown in the bottom panes), spider (Or Ajax spider, in the bottom panes).
+You will likely run into two issues:
+- crAPI uses a **self-signed TLS certificate** – configure Gobuster to [skip TLS verification](https://3os.org/penetration-testing/cheatsheets/gobuster-cheatsheet/#dir-mode-options).
+- crAPI returns **HTTP 200** even for invalid paths, causing **false positives** — responses that appear valid to the scanner but actually aren’t. You’ll need to exclude these default responses based on their content length.
 
-Perform the following tasks:
-- Initiate an automated scan (use Ajax spiders) and wait for the scan to complete.
-- Review the site tree in the left site. What information does it provide?
-- Review the alerts. Can you correlate any of the alerts to the vulnerability you discovered in exercise 4?
-- What information can you find in the pane `AJAX Spider`?
+> 🧪 **Tip: Finding the default response length**  
+> To exclude false positives, you first need to determine how long crAPI’s default (invalid) response is.  
+> Try sending a request to a fake path like this:
+> ```bash
+> curl -k -i https://127.0.0.1:8443/thispathshouldnotexist
+> ```
+> Look at the `Content-Length` in the response headers, or count the number of characters in the response body.  
+> You'll use this value when configuring your scan (see Gobuster documentation for how).
+
+Gobuster is a highly aggressive scanner and generates significant traffic — making it easily detectable by intrusion detection systems (IDS).  
+To reduce scan noise, consider using a [delay option](https://hackertarget.com/gobuster-tutorial/) between requests.
+
+🧪 Perform the following:
+- Run Gobuster against crAPI with the `common.txt` wordlist. **Remember to use HTTPS.**
+- Record all paths that return status codes `200` or `300` into a file named `crAPI_wordlist.txt`.
+
+> 💡 **Tip: Name your wordlist files clearly**  
+> Save the valid paths discovered with Gobuster into a file named `gobuster_common.txt`,  
+> or use a central file like `crAPI_wordlist.txt` to consolidate results from multiple scans.
+
+Gobuster is a highly aggressive scanner and generates significant traffic — making it easily detectable by intrusion detection systems (IDS).  
+To reduce scan noise, consider using a [delay option](https://hackertarget.com/gobuster-tutorial/) between requests.
+
+🧪 Perform the following:
+- Run Gobuster against crAPI with the `common.txt` wordlist. **Remember to use HTTPS.**
+- Record all paths that return status codes `200` or `300` into a file named `crAPI_wordlist.txt`.
+
+---
+
+## 4 – Enumerating crAPI with Gobuster and the Wordlist `quickhits.txt`
+
+Repeat the process from step 3, but now use the `quickhits.txt` wordlist.
+
+🧪 Perform the following:
+- Run Gobuster with the `quickhits.txt` wordlist.
+- Append all positive responses (200s and 300s) to your `crAPI_wordlist.txt`.
+- One path reveals a potential vulnerability — can you spot it? (No exploitation needed — just identify it.)
+
+> 💡 Hint: Look for endpoints that return more information than expected — or ones that suggest admin-level or internal access.
+> 💡 Hint: Look for paths that suggest admin interfaces, debugging tools, internal documentation, or unexpected exposure of data.
+
+> 📁 **Tip:** You can save results from this scan in a separate file like `gobuster_quickhits.txt`,  
+> or continue appending them to `crAPI_wordlist.txt` for a comprehensive path list.
+
+Your wordlist now reflects verified paths for crAPI. It’s a valuable tool for future scans.
+
+---
+
+## 5 – Enumerating crAPI with ZAP
+
+[OWASP ZAP](https://www.zaproxy.org/) is a free and open-source web analysis tool.  
+Unlike [Burp Suite](https://portswigger.net/burp), ZAP provides full functionality without requiring a paid license.
+
+You’ll use ZAP’s automated scanning to map crAPI and detect potential issues.
+
+🧪 Perform the following:
+- Run an **automated scan** using the **AJAX spider**.
+- Review the **Site Tree** in the left pane — what do you learn?
+- Review the **Alerts** — do any match vulnerabilities from step 4?
+- Explore the **AJAX Spider** pane — what information does it reveal?
+
+---
+
+### 🧠 Reflect & Discuss
+
+1. What types of services and ports did you discover?  
+2. Which tool gave you the most useful information about crAPI’s structure — and why?  
+3. How could an attacker use the discovered endpoints to plan a more targeted attack?  
+4. If an endpoint always returns 200 OK, how can that mislead automation tools like Gobuster?  
+5. How would you explain the purpose of active reconnaissance to a non-technical stakeholder?  
+6. How did ZAP's results compare with Gobuster and Nmap? What did it reveal that the other tools didn’t — and vice versa?
+
+---
+
+⚖️ **Ethical Reminder**
+
+Tools like Gobuster, Nmap, and ZAP generate significant amounts of traffic and can unintentionally cause service disruptions or trigger alarms.  
+Always conduct scanning **only** in isolated test environments where you have **explicit authorization**.  
+Never scan production systems, client infrastructure, or unknown networks without proper permission.
