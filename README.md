@@ -1,11 +1,5 @@
 ﻿# 🛠️ Web Application Security – Introduction Lab Setup
 
-### 🎯 Learning Objectives
-- Set up a secure, isolated environment for API security testing.
-- Become familiar with Docker Compose and container management.
-- Gain initial exposure to vulnerable web applications (crAPI, Juice Shop, DVWA).
-- Prepare for hands-on API exploitation exercises.
-
 The purpose of this lab is to establish an environment suitable for basic introductory exercises in web application security.  
 The primary focus of these exercises is on API vulnerabilities, aiming to raise awareness of the potential security gaps that may occur.  
 The objective is to create a general understanding of these vulnerabilities and to offer a basic introduction to approaches and tools used for testing.  
@@ -20,6 +14,12 @@ The projects used in this lab include:
 - Juice Shop: [https://github.com/bkimminich/juice-shop](https://github.com/bkimminich/juice-shop)  
 - Completely Ridiculous API (crAPI): [https://github.com/OWASP/crAPI](https://github.com/OWASP/crAPI)  
 - Damn Vulnerable Web Application (DVWA): [https://github.com/digininja/DVWA](https://github.com/digininja/DVWA)
+  
+### 🎯 Learning Objectives
+- Set up a secure, isolated environment for API security testing.
+- Become familiar with Docker Compose and container management.
+- Gain initial exposure to vulnerable web applications (crAPI, Juice Shop, DVWA).
+- Prepare for hands-on API exploitation exercises.
 
 # 🚀 Getting started
 
