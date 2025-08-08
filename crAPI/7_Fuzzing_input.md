@@ -1,43 +1,73 @@
-# crAPI Fuzzing input 
-The purpose of these exercise is to introduce the concept of _Fuzz testing_.
-Fuzz testing is a technique where input data that is either invalid, unexpected or random
-is used as input for an application. The fuzz test is automated by software, which provide
-a fast way of inputting a lot of different data.
-  
-There are 2 overall approaches to fuzz data: Random generated data (dynamic combinations of characters, numbers and so on), and
-using premade wordlists. The latter is  by far the fastest approach, and the most suitable for fuzz testing web applications and alike.
-  
-In previous exercises you have already encountered and used fuzz testing. The dictionary attack you used for basic authentication is
-fuzz test approach, using data from a wordlist. The approach for API enumeration also depended on fuzzing the URL path.    
-A similar approach can be used for discovering potential vulnerabilities in a web application, by fuzzing the body of a request. 
-In these  exercises we will use this approach to discover potentiel SQL Injection vulnerabilities.
+# 🔍 Fuzzing Input in crAPI
 
+## 🧠 Learning Objectives
+- Understand the concept and purpose of fuzz testing.
+- Apply fuzzing techniques to identify potential SQL/NoSQL injection points.
+- Learn how to interpret response baselines during fuzzing.
 
-## prerequisites
-Prior to starting this exercise you should have completed [Exercise 6 - basic authentication attacks](6_Basic_Token_Attacks.md),
-to ensure you have experience with fuzzing tools (E.g. Burp suite intruder).
+---
 
-## Discovering possible SQL injection vulnerability with fuzzing
-In this exercise you will attempt to discover (not abuse) a SQL (or NoSQL) vulnerability using fuzzing.
-crAPI have the option of redeeming discount coupons, let try and see if we can abuse that endpoint.
-  
-1. In Burp suite, Capture at request for coupon validation
-2. Send the request to intruder
-3. Set the payload to be the value of _coupon_ .
-4. Use the wordlist Generic-SQLI from seclists as payload
-5. Observe to responses, what are the baseline lengths and response codes?, which should be ignored?
-The general pattern to be observed here, is which content length should be ignored, and which response
-code with this content length should be ignored. 
-  
-If there is no hits, maybe they are not using a SQL database. Let try with some NoSql queries also.
-  
-It is important to note With the NOsql injection attack, Encapsulating " " should be omitted from the request payload value,
-because NoSql Injection is more like an arbitary code injection attack, than a string manipulation attack (Such as SQL Inject).
-In short, it is not a string you are injecting.
-  
-1. Create a small wordlist for noSQL, with the values below:
+Fuzz testing is a technique where input data that is either invalid, unexpected, or random is used as input for an application. Fuzzing is usually automated, allowing testers to inject many variations of input efficiently.
+
+There are two main approaches:
+- **Random generation**: Dynamically generated combinations of characters and numbers.
+- **Wordlist-based**: Using premade lists of known payloads or patterns.
+
+The latter is especially suitable for web application testing, as it is faster and aligns well with known vulnerability patterns.
+
+> In previous exercises, you already used fuzzing:
+> - **Dictionary attack** = fuzzing login inputs
+> - **API enumeration** = fuzzing the URL path
+
+This time, you will use fuzzing to uncover **potential SQL or NoSQL injection vulnerabilities** by fuzzing request bodies.
+
+---
+
+## ⚙️ Prerequisites
+
+Before starting, make sure you have completed [Exercise 6 - Basic Token Attacks](6_Basic_Token_Attacks.md) to ensure you are familiar with tools like **Burp Suite Intruder**.
+
+---
+
+## 🕵️‍♂️ Discovering SQL Injection with Fuzzing
+
+You’ll begin by trying to discover a possible **SQL injection** vulnerability in crAPI’s **coupon validation** endpoint.
+
+### 📌 Steps
+
+1. In Burp Suite, capture a **coupon validation** request.
+2. Send the request to **Intruder**.
+3. Highlight the value of `coupon` and mark it as the **payload position**.
+4. Use the wordlist **`Generic-SQLI`** from **Seclists** as payload.  
+   - 📁 Example path in Kali Linux: `/usr/share/seclists/Fuzzing/Generic-SQLi.txt`
+5. Run the attack.
+6. Observe the responses:
+   - What are the baseline **status codes** and **content lengths**?
+   - Which responses differ from the baseline?
+
+> 🔍 A "baseline" is the common status code and content length returned for normal (non-malicious) input. Deviations from this may indicate a vulnerability.
+
+If no anomalies are found, the backend may use a **NoSQL** database instead. In that case, try fuzzing with **NoSQL-specific** payloads.
+
+---
+
+## 🧬 Discovering NoSQL Injection with Fuzzing
+
+**NoSQL injection** works differently from SQL injection. It often resembles code injection rather than string manipulation.
+
+> ⚠️ **Important**: Avoid wrapping NoSQL payloads in quotation marks (`" "`), as they are not treated as strings.
+
+### 📌 Steps
+
+1. Create a small **custom wordlist** with NoSQL payloads.  
+   You can use the list below:
+
+<details>
+<summary>Click to view NoSQL Payload Wordlist</summary>
+
 ```
-true, $where: '1 == 1'
+true
+$where: '1 == 1'
 , $where: '1 == 1'
 $where: '1 == 1'
 ', $where: '1 == 1
@@ -65,13 +95,32 @@ db.injection.insert({success:1});return 1;db.stores.mapReduce(function() { { emi
 {"username": {"$gt":""}, "password": {"$gt":""}}
 {"username":{"$in":["Admin", "4dm1n", "admin", "root", "administrator"]},"password":{"$gt":""}}
 {"$ne": null}
-
 ```
-2. Set the payload to the created wordlist file (clear the payload before adding the new file, or else this will take a while)
-3. Execute and observe, which create status codes not similar to the baseline?
 
-You should discover at least 1 potential vulnerability. But we will not attempt to abuse this yet.
+</details>
 
+2. Clear the previous payload list in **Intruder**.
+3. Load your new NoSQL wordlist as the payload.
+4. Run the attack.
+5. Watch for **anomalous status codes** or **unexpected content lengths**.
 
+> 🎯 You should discover **at least one** request with a suspiciously different response, indicating a potential injection point.
 
+---
 
+## 💬 Reflection
+
+- What patterns did you observe in the response behavior?
+- Why are baseline values important for identifying injection responses?
+- How does fuzzing differ between SQL and NoSQL injection attempts?
+- What limitations or risks are associated with blind fuzzing?
+
+---
+
+## ⚠️ Ethical Reminder
+
+These techniques are meant for **educational purposes only** and should **never** be used outside authorized lab environments like crAPI.
+
+Performing fuzzing or injection testing on systems without explicit permission may be illegal and unethical.
+
+---

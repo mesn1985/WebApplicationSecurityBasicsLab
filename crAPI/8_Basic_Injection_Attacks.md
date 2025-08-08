@@ -1,61 +1,79 @@
-# Basic Injection attack
+# 🧪 Basic Injection Attack
 
-Injection attacks are attacks where malicious actors injects malicious data into software, to make
-the software behave in a unintended way, allowing for malious operations on the software.
+## 🧠 Learning Objectives
+- Understand the concept of injection attacks and how they manifest in applications.
+- Perform basic NoSQL and SQL injection attacks to retrieve unauthorized information.
+- Identify risks in server-side request handling through SSRF attacks.
+- Reflect on defense mechanisms such as input validation and allowlists.
 
-There are multiple categories of injection attacks, such as SQL injection, code injection,
-Command injection etc. There are many categories. 
+---
 
-The purpose of these exercise, is to give an basic introduction to Injection attacks.
+Injection attacks occur when malicious actors inject harmful data into a program to alter its execution in unintended ways. These attacks can allow unauthorized actions or data access.
 
-The 2 first exercise are NoSQl and SQL Injection attacks, Exploiting the vulnerabilities
-discovered in the previous [Fuzzing input exercise](./7_Fuzzing_input.md).
+There are multiple categories of injection attacks, including:
+- **SQL injection**
+- **Code injection**
+- **Command injection**
+- **NoSQL injection**
+- **Server-side request forgery (SSRF)**
 
-## prerequisites
-Prior to starting these exercise, you should have completed the exercises in [Fuzzing input](7_Fuzzing_input.md)
+This set of exercises provides a basic introduction to injection attacks, focusing on practical examples using crAPI.
 
+> ⚠️ **Ethical Reminder**: These exercises should only be performed in authorized, isolated environments such as crAPI. Never test real systems without explicit permission.
 
-## Basic NoSql Injection attack
-In the previous fuzzing exercise, it was discoverd that the statement `{ "$ne": null}` triggered a
-particularly interesting response, we will try to exploit this with at NoSql injection attack.
+---
 
-Perform the following actions: 
-1. In the crAPI website, attempt to validate a coupon and capture the request.
-2. Alter the request, so the coupon code is `{ "$ne": 1 }`
-3. Read and verify the response. Note the coupon as you need it for the next exercise.
+## ⚙️ Prerequisites
+Before starting, you should have completed the [Fuzzing Input](./7_Fuzzing_input.md) exercises.
 
-NoSql is not a syntax we cover in this course, but if you are interested, you can read
-about [Mongodb here](https://www.mongodb.com/nosql-explained), which is a NoSql database.
-They are very different from relational database, but one of the major difference is that
-they do not use SQL as query syntax.
+---
 
+## 🔍 Basic NoSQL Injection Attack
 
-## Basic SQL injection attack - Get database version
-In this exercise we will attempt to perform a SQL injection attack, to obtain the version
-of the used relational database.
-1. in the crAPI, redeem the coupon obtained in previous exercise, and capture the apply coupon request.
-2. Alter the request so the coupon code is `0'; select version() --+`
-3. Review the reply, and google which type of database the specified database is.
+In the previous fuzzing exercise, the input `{ "$ne": null }` triggered an unusual response. You will now attempt to exploit this as a NoSQL injection vulnerability.
 
-It is not uncommon for web applications to use multiple types of database, e.g. relational and NoSql database.
-Obisvisouly these vulnerabilities are easy to exploit, when you know they exist, but finding these rather simple
-vulnerabilities without any prior knowledge would be rather hard. Then it is better to review the code of the 
-application, to determine if proper input validation is used, Objects upholds invariance, or either parameterized statements
-or ORM are used. All of the before mentioned could mitigate this attack, and in combination with each other, create a strong
-safety net (Defense in depth).
+### 📌 Steps
+1. In the crAPI web app, validate a coupon and capture the request in Burp Suite.
+2. Modify the coupon code in the request body to: `{ "$ne": 1 }`
+3. Observe and interpret the response. If successful, note the returned coupon—you will need it for the next task.
 
+> 🧠 NoSQL databases like MongoDB do **not** use SQL. Instead, they rely on structured documents (typically JSON). Learn more about [MongoDB here](https://www.mongodb.com/nosql-explained).
 
-## Basic Server side request forgery SSRF
-In this exercise you will attempt to get api to make a GET request to google,
-by altering the request input. The name of this attack is server side request forgery,
-but it still qualify as an injection attack, because it depends on what you send to 
-the application. 
+---
 
-Not so many clues in  this exercise, so it requires a bit of tinkering, but once you find
-the solution, you will discover that it is quiet simple.
+## 🛠️ Basic SQL Injection – Retrieve Database Version
 
-1. Capture the post request for contact mechanic 
-2. find a way to use the post request making the server calls `https://www.google.dk`
+You’ll now attempt a SQL injection attack to identify the relational database in use.
 
-This type of exploit can be avoided by keeping a `request allow list` in the application,
-ensure that the application can only make request to a selected set of URL's.
+### 📌 Steps
+1. Use the coupon retrieved in the previous exercise and capture the apply coupon request.
+2. Change the coupon code in the request to: `0'; select version() --+`
+3. Observe the reply and search online to determine the database type based on the returned version.
+
+> 🧠 Many web applications use both relational and NoSQL databases. This mix can lead to diverse and hard-to-detect vulnerabilities.
+
+> ✅ Secure coding practices such as input validation, parameterized queries, and ORM use can prevent these attacks. Combined, they form **defense in depth**.
+
+---
+
+## 🌐 Basic Server-Side Request Forgery (SSRF)
+
+In this challenge, you’ll attempt to make the crAPI backend send a request to an external site—Google.
+
+### 🎯 Goal
+Make the API issue a **GET** request to `https://www.google.dk` by modifying a POST request to the **contact mechanic** endpoint.
+
+### 📌 Steps
+1. Capture the **POST** request used to contact a mechanic.
+2. Modify the request so that the API attempts a server-side call to https://www.google.dk.
+
+> ✅ To prevent SSRF, applications should maintain a **request allowlist** that restricts outgoing requests to known and safe destinations.
+
+---
+
+## 🧠 Reflection Questions
+
+- What differentiates NoSQL injection from SQL injection?
+- How could the application have prevented these injection attacks?
+- What are the broader implications of a successful SSRF attack?
+- How do secure practices like parameterized queries and request allowlists help prevent injection attacks?
