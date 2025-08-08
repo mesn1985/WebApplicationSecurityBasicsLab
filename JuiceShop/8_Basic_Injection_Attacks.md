@@ -1,69 +1,76 @@
-# Basic injection attacks.
+# Basic Injection Attacks
 
-## prerequisites
-These exercises are a continuation of the injection attack exercises in [Juice shop basic injection attacks](../crAPI/8_Basic_Injection_Attacks.md).
+## 🧠 Learning Objectives
+- Understand the basics of SQL injection and how error messages can reveal vulnerabilities.
+- Practice exploiting SQL injection to bypass authentication.
+- Explore DOM-based Cross-Site Scripting (XSS) and understand how client-side injection works.
+- Learn common XSS payload types and how they differ.
+- Understand mitigation techniques for SQL injection and XSS vulnerabilities.
+- Recognize ethical considerations when testing for vulnerabilities.
 
+---
 
-## Basic SQL injection attack 
-In the [Fuzzing input exercise](7_Fuzzing_input.md) you discovered that the user name value is vulnerable to SQL injection attacks.
-In this exercise you will exploit that.
+## ⚙️ Prerequisites
+- Completion of [Juice Shop Fuzzing Input](../JuiceShop/XX_Fuzzing_Input.md) and [Basic Injection Attacks with crAPI](../crAPI/8_Basic_Injection_Attacks.md).
+- Familiarity with Burp Suite or similar interception and fuzzing tools.
 
-Perform the following actions:
-1. In the juiceshop web application, authenticate with `'` as username, and the password `123` and capture the response.
-2. Inspect the response (Should be error code 500). What type of error is it?
-3. Locate the sql string in the response, and copy it to notepad.
-4. In the sql string you copied to notepad, replace the value of email with `' OR TRUE --`, what does this sql string do?
+---
 
-Because the application made a printout of the SQL string, it is now very easy to experiment with manipulation of the string.
-Therefor such information should not be exposed. Stack traces and error messages are attack vectors.
+## Basic SQL Injection Attack
 
-1. in the juice shop web site, authenticate your self with the username `' OR TRUE --` and the password `123`.
-2. Go to account information, which user are you authenticated as?
+SQL Injection is an attack where an attacker manipulates SQL queries by injecting malicious input, often exploiting unescaped user inputs.
 
-SQL injection attacks can be mitigated in numerous ways. Either use [Parameterized queries](https://learn.microsoft.com/en-us/aspnet/web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/using-parameterized-queries-with-the-sqldatasource-cs),
-or  [ORM (.Net har Entity framework)](https://learn.microsoft.com/en-us/ef/core/). Furthermore, input validation and upholding objects invariance help mitigate SQL (Or noSql) attacks.
+### Steps
 
-## Perform the sql injection attack with fuzzing
-The purpose of this exercise is to perform a repetive exercise of the fuzzing technique.
+1. In Juice Shop, attempt to login with username: `'` and password: `123`. Capture the response.
+2. Inspect the response; it should be an error (usually HTTP 500). Note the error type.
+3. Look for the SQL query printed in the error message; copy it for analysis.
+4. Replace the email value in the SQL query with: `' OR TRUE --` and consider what effect this has on the query.
+5. Login again using the username: `' OR TRUE --` and password: `123`.
+6. Check which user you are authenticated as.
 
-1. create a small wordlist with a known SQL injection string, including the `' OR TRUE --`.
-2. Obtain a response 200 code with a fuzzing attack (Using Burp suite or WFuzz).
+> ⚠️ Exposing SQL queries or stack traces is a serious security flaw as it aids attackers.
 
+### Fuzzing with SQL Injection Payloads
 
-## Basic DOM Cross site scripting
-DOM XSS is an injection attack on the browser (Client side) where you try to execute malicious
-scripts in the browser by injecting javascript code. So initially the backend server(s) or database
-is not affected by this attack. The main goal of this types of attacks is to steal data from the 
-user of the browser. E.g. Credentials. 
+1. Create a small wordlist including `' OR TRUE --`.
+2. Using Burp Suite Intruder or WFuzz, fuzz the login username or password field with this list.
+3. Observe responses; look for HTTP 200 or other anomalous responses indicating injection success.
 
-1. in the search bar, input the string `hey` and view the result.
-2. in the search bar, input the string ```<h6>hey</h6>``` and view the result
+---
 
-The result shows that the font size in the search result have changed, which means that  
-the input is not [HTML encoded](https://www.w3schools.com/html/html_charset.asp) and the
-browser therefor have accepted the input string as valid HTML. To prove this do the following:
+## Basic DOM Cross Site Scripting (XSS)
 
-1. In the search bar, input the string ```&#60;h6&#62;hey&#60;/h6&#62```
-2. Review the result, which should be ```<h6>hey</h6>```.
+DOM XSS is a client-side vulnerability where malicious scripts execute in the browser by injecting JavaScript code through input fields, potentially stealing user data.
 
-Knowing that the application is vulnerable to XSS, lets try to inject a simple script into
-the search field.
+### Steps
 
-1. In the search bar, input the string `<script>alert('You got hacked')</script>`
+1. Search for `hey` and observe the result.
+2. Search for `<h6>hey</h6>` and observe the change in font size, indicating HTML is not encoded.
+3. Search for `&#60;h6&#62;hey&#60;/h6&#62;` to see the raw HTML output.
+4. Try injecting a script tag: `<script>alert('You got hacked')</script>`. Observe that it does not execute.
+5. Inject an iframe with JS payload: `<iframe src="javascript:alert('You got hacked')">` and see if it executes.
+6. Try an image tag with an error event handler: `<img src=x onerror=alert('You got hacked')>`.
 
-The result shows up blank. This indicates that inline scripts are disables for this
-website(Or the browser disallows it). So we will have to try to inject a script, without using an inline script
-tag. Some tags such as `iframe` allows its attributes to be executable scripts, which 
-can circumvent disallowed inline scripts. Let try to do that.
+### XSS Mitigations
 
-1. In the search bar, input the string `<iframe src="javascript:alert('you got hacked')">`.
+- Properly encode all user inputs before rendering.
+- Use Content Security Policy (CSP) headers to restrict executable sources.
+- Sanitize input to remove dangerous tags or attributes on client side, and reject invalid data on server side.
 
-The [IFrame tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) is a way to embed other
-html pages into the current one. The embedded HTML page can be generated or requested through Javascript as a 
-convenience, but unfortunately it can also be abused. The `IFrame` tag is not the only tag which allows attributes
-to execute Javascript. You could try with `<img src=x onerror=alert('You got hacked')>`.
-The mitigation for this, is of course to ensure that the client side(browser) encodes all received input.
+---
 
-This attack is not the most useful. But if you can perform what is known as a stored XSS attack, which
-means you get the server to persist your Javascript injection as data, and deliver it to other users,
-this can be very useful.
+## Ethical Reminder
+
+Only test vulnerabilities on authorized, isolated environments like Juice Shop. Unauthorized testing is illegal and unethical.
+
+---
+
+## 🧠 Reflection Questions
+
+- Why is exposing SQL queries in error messages dangerous?
+- How does the `' OR TRUE --` payload bypass authentication?
+- What differentiates DOM XSS from traditional server-side XSS?
+- How do CSP and input sanitization mitigate XSS?
+- What ethical considerations should guide security testing?
+

@@ -1,20 +1,55 @@
-# Endpoint analysis with postman.
-The purpose of this exercise is to introduce the OpenApi specifications, and to have repetition of the skills learned
-in previous exercises.
+# 🔍 Endpoint Analysis with Postman
 
-## prerequisites
-Prior to starting these exercises, you should have completed the [postman exercise with crAPI](../crAPI/4_Endpoint_Analysis_with_postman.md)
+## 🧠 Learning Objectives
+- Understand the role of Swagger/OpenAPI in documenting APIs.
+- Use Swagger documentation to discover API behavior and validate backend constraints.
+- Reiterate skills in building Postman collections through exploration or proxying.
+- Recognize potential risks in exposing internal API documentation.
 
-## 1 -  Using the Swagger documentation of Juiceshop and manually build a request collection.
-In the previous Juiceshop exercises found in [3 Active reconnaissance](3_Active_reconnaissance.md) exercise 4. Gobuster and the wordlist _Swagger.txt_ uncovered
-that there is an endpoint called `/api-docs/swagger.json` in the juiceshop API. [Swagger](https://swagger.io/docs/specification/about/) is a set of tools, used
-to create API documentation around the [OpenApi specifications](https://swagger.io/docs/specification/about/). This indicates that documentation for the use of
-the Juiceshop API can be found here. In this exercise, you will explorer the documentation found in the Swagger endpoint. You should experiment with using 
-the documentation for creating requests, how can the swagger documentation aid you.
+---
 
-1. Try experimenting with what you can find in the documentation at the endpoint `/api-docs/swagger.json`, does quantity have validation in the backend API?
+## ⚙️ Prerequisites
+You should have completed the [Postman exercise with crAPI](../crAPI/4_Endpoint_Analysis_with_postman.md) and exercises in [3 Active Reconnaissance](3_Active_reconnaissance.md), especially Exercise 4.
 
-## 2 - Build a juiceshop collection
-The approach in this exercise, is similar to the approach you used with with crAPI in exercise [4 Endpoint Analysis with postman](../crAPI/4_Endpoint_Analysis_with_postman.md).
-Build a request collections for Juiceshop. You could build it manually, or by proxy'ing the browser through Postman. How you do it, is up to you.
+---
 
+## 1 - Exploring Swagger Documentation for Juice Shop
+
+In [3 Active Reconnaissance - Exercise 4](3_Active_reconnaissance.md), you discovered the endpoint `/api-docs/swagger.json`. This is a Swagger endpoint, built around the [OpenAPI Specification](https://swagger.io/docs/specification/about/), used to describe and document APIs.
+
+Visit the Swagger JSON endpoint to understand how Juice Shop’s API is structured.
+
+### 🧪 Task
+- Explore the endpoint `/api-docs/swagger.json`. What endpoints are documented?
+- What parameters are required? Are there default values?
+- Does the `quantity` field have backend validation?
+- Try to use this documentation to manually construct a valid request using Postman.
+- Does the documentation mention authentication requirements? Is it reflected in actual API behavior?
+
+> 🧠 *Reflection*: Could this Swagger documentation itself be considered an information disclosure risk? How might it help an attacker understand the internal structure of the application?
+
+---
+
+## 2 - Build a Juice Shop Postman Collection
+
+Just like in [crAPI - Endpoint Analysis with Postman](../crAPI/4_Endpoint_Analysis_with_postman.md), you will now construct your own request collection for Juice Shop.
+
+You can build the collection:
+- Manually (based on the Swagger documentation), or
+- By proxying browser traffic through Postman.
+
+Experiment to see which method gives you the best insight or coverage.
+
+> 🛠️ *Advanced Tip*: Tools like [Postman](https://www.postman.com/) or [Insomnia](https://insomnia.rest/) support importing Swagger/OpenAPI files directly.
+
+> 🔍 *Bonus Task*: Try sending requests outside what’s specified in the Swagger docs. Does the API still respond? Any surprises?
+
+> 🔁 *Reminder*: This is a repetition task from crAPI. The goal is to deepen your comfort with API Postman and exploratory testing techniques.
+
+---
+
+## 🧠 Reflection Questions
+
+- How does Swagger documentation improve developer experience—and how might it help attackers?
+- What API security concerns can arise from public exposure of Swagger docs?
+- Was your manual Postman collection consistent with the API spec? Why or why not?
