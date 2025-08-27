@@ -28,28 +28,13 @@ Different students learn at different paces — and that’s okay.
 For some of you, tools like Docker, PowerShell, or Git may be entirely new. That’s expected and fully part of the learning curve.  
 Cybersecurity is a complex field, and it's important to develop confidence with foundational tools and practices before diving into more advanced topics. Take your time — learning the basics well is key to long-term success.
 
-## 🧪 Test environment
-
-All shown configurations are tested in the following environment:
-
-| Component            | Version           | Details                                                                     |
-| -------------------- | ----------------- | --------------------------------------------------------------------------- |
-| **Operating System** | Windows 11 Pro    | Version: 10.0.26100<br>Build: 26100                                         |
-| **Docker Client**    | 27.3.1            | API version: 1.47<br>Go version: go1.22.7<br>Git commit: ce12230            |
-| **Docker Server**    | 27.3.1            | API version: 1.47 (min 1.24)<br>Go version: go1.22.7<br>Git commit: 41ca978 |
-| **Docker Desktop**   | 4.36.0            | Build: 175267                                                               |
-| **Docker Compose**   | v2.30.3-desktop.1 | Included with Docker Desktop                                                |
-| **containerd**       | 1.7.21            | Git commit: 472731909fa34bd7bc9c087e4c27943f9835f111                        |
-| **runc**             | 1.1.13            | Git commit: v1.1.13-0-g58aa920                                              |
-| **docker-init**      | 0.19.0            | Git commit: de40ad0                                                         |
-
 ## 🐳 Setting up the lab
 For convenience, the lab is deployed using [Docker Compose](https://docs.docker.com/compose/), requiring both Docker and Docker Compose for usage.  
 For Windows users, you can easily set up the lab by following [the installation instructions for Docker Desktop](https://docs.docker.com/desktop/install/windows-install/), which include the installation of both Docker and Docker Compose.
    
 Linux users can follow the instructions for [installing Docker on Linux](https://docs.docker.com/desktop/install/linux-install/) and, subsequently, the guidelines for [installing Docker Compose on Linux](https://docs.docker.com/compose/install/linux/).
 
-▶️ A Docker Desktop setup video guide can be found [here](https://www.youtube.com/watch?v=7y50rZItKCQ)
+> ▶️ A Docker Desktop setup video guide can be found [here](https://www.youtube.com/watch?v=7y50rZItKCQ)
 
 You’ll be using Docker primarily through the command line, but the Docker Desktop GUI can be helpful for managing containers visually.
 
@@ -57,26 +42,24 @@ You’ll be using Docker primarily through the command line, but the Docker Desk
 You can clone this entire repository to your local PC using [Git](https://git-scm.com/),  
 or you can simply copy-paste the contents of the [docker-compose.yml file](./docker-compose.yml) to a file with a .yml extension on your local PC.
 
-📚 A guide for cloning a GitHub repository using Git can be found [here](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+> 📚 A guide for cloning a GitHub repository using Git can be found [here](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
 
 ### 📦 Deploy the lab to Docker
-Inside the folder which contains the `docker-compose.yml` file (the cloned project from GitHub), execute the command  
+Inside the folder which contains the `docker-compose.yml` file (the cloned project from GitHub), execute the following command, using PowerShell (or Bash for Linux users)  
 ```
 docker-compose -f docker-compose.yml --compatibility up -d
 ```
-using PowerShell (or Bash for Linux users).
 
-🧭 You can find the guide [Starting Windows PowerShell here](https://learn.microsoft.com/en-us/powershell/scripting/windows-powershell/starting-windows-powershell?view=powershell-7.4), and a video for navigating PowerShell [here](https://www.youtube.com/watch?v=gd1GT5gfIPk).
+> 🧭 if you are new to powershell, You can find the guide [Starting Windows PowerShell here](https://learn.microsoft.com/en-us/powershell/scripting/windows-powershell/starting-windows-powershell?view=powershell-7.4), and a video for navigating PowerShell [here](https://www.youtube.com/watch?v=gd1GT5gfIPk).
 
-🌐 Now, you should be able to access the Juice Shop website at the URL [http://127.0.0.1:3000](http://127.0.0.1:3000) and the crAPI website at the URL [https://127.0.0.1:8443](https://127.0.0.1:8443).  
+> 🧰 You can get a full description of the `docker-compose up` command [here](https://docs.docker.com/engine/reference/commandline/compose_up/)
+
+ When docker compose is done deploying, you should be able to access the Juice Shop website at the URL [http://127.0.0.1:3000](http://127.0.0.1:3000) and the crAPI website at the URL [https://127.0.0.1:8443](https://127.0.0.1:8443).  
   
-🛡️ Note: Accessing crAPI at https://127.0.0.1:8443 may trigger a browser security warning due to a self-signed certificate.  
+> 🛡️ Note: Accessing crAPI at https://127.0.0.1:8443 may trigger a browser security warning due to a self-signed certificate.  
 This is normal for a local test environment — you can safely bypass the warning.
   
-✅ **Verify Setup:** Open [http://127.0.0.1:3000](http://127.0.0.1:3000).  
-You should see the Juice Shop login screen.
-
-🧰 You can get a full description of the `docker-compose up` command [here](https://docs.docker.com/engine/reference/commandline/compose_up/)
+✅ **Verify Setup:** Open [http://127.0.0.1:3000](http://127.0.0.1:3000) and you should see the Juice Shop login screen.
 
 ### 🔻 Remember to shut down the service when not in use.
 
@@ -119,3 +102,18 @@ Never test real systems without explicit permission.
 | crapi-workshop  | Not exposed by default — to enable, remove the comment tags (#) in docker-compose.yml and re-run the deployment.|
 | crapi-web | HTTP: 8888 HTTPS: 8443  |
 | mailhog | 8025  |
+
+## 🧪 Test environment
+
+All shown configurations are tested in the following environment:
+
+| Component            | Version           | Details                                                                     |
+| -------------------- | ----------------- | --------------------------------------------------------------------------- |
+| **Operating System** | Windows 11 Pro    | Version: 10.0.26100<br>Build: 26100                                         |
+| **Docker Client**    | 27.3.1            | API version: 1.47<br>Go version: go1.22.7<br>Git commit: ce12230            |
+| **Docker Server**    | 27.3.1            | API version: 1.47 (min 1.24)<br>Go version: go1.22.7<br>Git commit: 41ca978 |
+| **Docker Desktop**   | 4.36.0            | Build: 175267                                                               |
+| **Docker Compose**   | v2.30.3-desktop.1 | Included with Docker Desktop                                                |
+| **containerd**       | 1.7.21            | Git commit: 472731909fa34bd7bc9c087e4c27943f9835f111                        |
+| **runc**             | 1.1.13            | Git commit: v1.1.13-0-g58aa920                                              |
+| **docker-init**      | 0.19.0            | Git commit: de40ad0                                                         |
