@@ -24,8 +24,7 @@ All the tool are executed on Kali Linux. I use [Kali](https://www.kali.org/docs/
 but any instance should to.  
 > _When using Kali Linux on WSL, the services from the docker enviroment, should be accesible on the network interface loopback adresse(127.0.0.1)_
 
-The wordlists from [SecLists](https://www.kali.org/tools/seclists/) should be installed  
-along with [Gobuster](https://www.kali.org/tools/gobuster/) on a Kali Linux instance  .
+The wordlists from [SecLists](https://www.kali.org/tools/seclists/) should be installed along with [Gobuster](https://www.kali.org/tools/gobuster/) on a Kali Linux instance.
 
 If you use Kali with WSL, you can simply scan the loopback address (unless default settings have been changed).  
 If you use a virtual machine, ensure that a NAT is configured between the host and VM.
