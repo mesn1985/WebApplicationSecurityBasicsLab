@@ -19,17 +19,20 @@ Afterwards, you will enumerate crAPI to determine available URL paths.
 ## Prerequisites
 
 The [setup of the lab](../README.md) should be completed.
+  
+All the tool are executed on Kali Linux. I use [Kali](https://www.kali.org/docs/wsl/wsl-preparations/) on WSL for convenience,
+but any instance should to.  
+> _When using Kali Linux on WSL, the services from the docker enviroment, should be accesible on the network interface loopback adresse(127.0.0.1)_
 
 The wordlists from [SecLists](https://www.kali.org/tools/seclists/) should be installed  
-along with [Gobuster](https://www.kali.org/tools/gobuster/) on a Kali Linux instance  
-(I use [Kali](https://www.kali.org/docs/wsl/wsl-preparations/) on WSL for convenience).
+along with [Gobuster](https://www.kali.org/tools/gobuster/) on a Kali Linux instance  .
 
 If you use Kali with WSL, you can simply scan the loopback address (unless default settings have been changed).  
 If you use a virtual machine, ensure that a NAT is configured between the host and VM.
 
-Wordlist paths in WSL:
-- `/usr/share/wordlists/seclists/Discovery/Web-Content/common.txt`
-- `/usr/share/wordlists/seclists/Discovery/Web-Content/quickhits.txt`
+Wordlist paths in Kali WSL are:
+- `/usr/share/seclists/Discovery/Web-Content/common.txt`
+- `/usr/share/seclists/Discovery/Web-Content/quickhits.txt`
 
 To familiarize yourself with Gobuster, you can watch this [intro tutorial](https://www.youtube.com/watch?v=HjXNK-mYwDQ)
 
