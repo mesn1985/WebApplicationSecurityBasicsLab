@@ -17,7 +17,7 @@ services:
 
   crapi-identity:
     container_name: crapi-identity
-    image: crapi/crapi-identity:${VERSION:-latest}
+    image: crapi/crapi-identity@sha256:41649ff5dad09e3456c7e1153a0644f92f9cae85caffaa3ab997200c86c89df3
     #ports:
     #  - "${LISTEN_IP:-127.0.0.1}:8080:8080"
     volumes:
@@ -71,7 +71,7 @@ services:
 
   crapi-community:
     container_name: crapi-community
-    image: crapi/crapi-community:${VERSION:-latest}
+    image: crapi/crapi-community@sha256:f9ce203fa9c93e70fb2ae4a1595786bb51219edfe9c01dd4e648df3a6da5d38b
     #ports:
     #  - "${LISTEN_IP:-127.0.0.1}:8087:8087"
     environment:
@@ -111,7 +111,7 @@ services:
 
   crapi-workshop:
     container_name: crapi-workshop
-    image: crapi/crapi-workshop:${VERSION:-latest}
+    image: crapi/crapi-workshop@sha256:171a3b6dc979a864aa39f34debea9846de3b85e127374798082b43939a22948d
     #ports:
     #  - "${LISTEN_IP:-127.0.0.1}:8000:8000"
     environment:
@@ -155,7 +155,7 @@ services:
 
   crapi-web:
     container_name: crapi-web
-    image: crapi/crapi-web:${VERSION:-latest}
+    image: crapi/crapi-web@sha256:03d0758b8af1d0d70d5152b81ea373d91c14bcc1a9b92fa0ae935dad3a1db264
     ports:
       - "${LISTEN_IP:-127.0.0.1}:8888:80"
       - "${LISTEN_IP:-127.0.0.1}:8443:443"
@@ -185,7 +185,7 @@ services:
 
   postgresdb:
     container_name: postgresdb
-    image: 'postgres:14'
+    image: postgres@sha256:e84397672fce21223933cd4f9b09fdea0c1c72daa834c57a613121c927b2ba61
     command: ["postgres", "-c", "max_connections=500"]
     environment:
       POSTGRES_USER: admin
@@ -208,7 +208,7 @@ services:
 
   mongodb:
     container_name: mongodb
-    image: 'mongo:4.4'
+    image: mongo@sha256:52c42cbab240b3c5b1748582cc13ef46d521ddacae002bbbda645cebed270ec0
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: crapisecretpassword
@@ -231,7 +231,7 @@ services:
   mailhog:
     user: root
     container_name: mailhog
-    image: crapi/mailhog:${VERSION:-latest}
+    image: crapi/mailhog@sha256:4ba715d421f77fd6e2b511fdbcba78234d6232cde453021f2ed4b368fae32960
     environment:
       MH_MONGO_URI: admin:crapisecretpassword@mongodb:27017
       MH_STORAGE: mongodb
@@ -251,7 +251,7 @@ services:
 
   api.mypremiumdealership.com:
     container_name: api.mypremiumdealership.com
-    image: crapi/gateway-service:${VERSION:-latest}
+    image: crapi/gateway-service@sha256:becb3201cfc95592896bb35a4a1b6f1d656ce2cf212fe2872ff947f7ff12c3f4
     #ports:
     #  - "${LISTEN_IP:-127.0.0.1}:8443:443" # https
     healthcheck:
@@ -266,16 +266,14 @@ services:
           cpus: '0.1'
           memory: 50M
 
-
   juiceshop:
-    image: bkimminich/juice-shop
+    image: bkimminich/juice-shop@sha256:c6f965f8929c2c43676e3ac55cd19d482c0084400195db07ed7513a04f3468b5
     ports:
-    - "3000:3000"
+      - "3000:3000"
+
   dvwa:
-    build: .
-    image: ghcr.io/digininja/dvwa:latest
-    # Change `always` to `build` to build from local source
-    pull_policy: always
+    # switched from local build to the published image pinned by digest
+    image: ghcr.io/digininja/dvwa@sha256:68159f0a6acc47800127e22798fd547201c915cb15c7f9a5ea12419532e4aa30
     environment:
       - DB_SERVER=db
     depends_on:
@@ -285,8 +283,9 @@ services:
     ports:
       - 4280:80
     restart: unless-stopped
+
   db:
-    image: docker.io/library/mariadb:10
+    image: mariadb@sha256:e4ad7c5ad8874c2b049cef7566ccf534856b9fcde1c3c89c3251e8fa6fd6915c
     environment:
       - MYSQL_ROOT_PASSWORD=dvwa
       - MYSQL_DATABASE=dvwa
@@ -297,10 +296,10 @@ services:
     networks:
       - dvwa
     restart: unless-stopped
+
 volumes:
   mongodb-data:
   postgresql-data:
   dvwa:
 networks:
   dvwa:
-  
