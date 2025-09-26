@@ -104,7 +104,7 @@ Use Postman to add a post to crAPI’s community section, verifying that authori
 Postman can automatically generate requests by intercepting browser traffic using the **Interceptor extension**.
 
 🧪 **Do this:**
-1. Install [Postman Interceptor](https://learning.postman.com/docs/sending-requests/capturing-request-data/interceptor/).
+1. Install [Postman Interceptor](https://learning.postman.com/docs/sending-requests/capturing-request-data/interceptor/) to a browser of your choice(I use chrome).
 2. Create a new collection named **crAPI-Automated**.
 3. Open the crAPI app in the browser.
 4. Activate Interceptor to begin capturing.
