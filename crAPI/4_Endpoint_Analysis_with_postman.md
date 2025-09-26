@@ -57,7 +57,7 @@ Test if password policies are enforced only on the frontend (browser) or also on
 🧪 **Do this:**
 1. In Postman, modify the `signup` request.
 2. Set a password that breaks the visible frontend policy (e.g., only 4 letters).
-3. Click **Send** and analyze the API response. What are the backend requirements for passwords?.
+3. Click **Send** and analyze the API response. What are the backend requirements for passwords? and does the response qualify as an EDE?
 
 > 🔍 **Reflection:**  
 > What does the API allow that the frontend UI blocks? What does that imply about backend validation?
