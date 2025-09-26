@@ -44,7 +44,7 @@ You'll use Burp Suite to intercept the signup request and replicate it in Postma
    - Set format to **JSON**
 5. 💾 **Save** the request.
 6. Click **Send**.
-   - If you get `403 Forbidden`, modify the values until you receive `200 OK`.
+7. Read the response message (Most likely an error, saying phonenumber already exist )
 
 > 🔁 **Reflection:** Why is it helpful to replicate captured requests in a structured tool like Postman?
 
