@@ -199,3 +199,4 @@ Never attempt these methods against production systems, third-party services, or
 - Which attack method was the most efficient?
 - What would happen if the API enforced rate limits and lockouts?
 - How can developers defend against these attacks?
+- Should all parts of a legacy API implmentations be allowed to execute parralel with non legacy implementations?
