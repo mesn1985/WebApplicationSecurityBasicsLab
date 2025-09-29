@@ -104,7 +104,7 @@ Use Postman to add a post to crAPI’s community section, verifying that authori
 Postman can automatically generate requests by intercepting browser traffic using the **Interceptor extension**.
 
 🧪 **Do this:**
-1. Install [Postman Interceptor](https://learning.postman.com/docs/sending-requests/capturing-request-data/interceptor/) to a browser of your choice(I use chrome).
+1. Install [Postman Interceptor](https://learning.postman.com/docs/sending-requests/capturing-request-data/interceptor/) to a browser of your choice(E.g. chrome).
 2. Create a new collection named **crAPI-Automated**.
 3. Open the crAPI app in the browser.
 4. Activate Interceptor to begin capturing.
@@ -135,7 +135,7 @@ Pair Postman’s structured request generation with Burp Suite’s deep inspecti
 3. Set:
    - **Server:** `127.0.0.1`
    - **Port:** `8080` (default Burp proxy port)
-4. In **General Settings**, disable **SSL certificate verification**
+4. Switch to **General Settings**, disable **SSL certificate verification**
 5. Open Burp Suite and ensure the proxy is listening.
 6. In Burp’s **HTTP History**, verify that Postman requests are now visible.
 
