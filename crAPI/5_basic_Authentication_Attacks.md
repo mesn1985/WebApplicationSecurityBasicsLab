@@ -35,7 +35,7 @@ The approach is explained in [Running a dictionary attack](https://portswigger.n
 7. In the request body, set the email to match the user from step 2.
 8. Highlight the value of the `password` field and click **Add**.
 9. Switch to the **Payloads** tab.
-10. Set _Payload Set_ to `1`, and _Payload Type_ to `Simple list`.
+10. Set _Payload Type_ to `Simple list`.
 11. Load your wordlist from step 1.
 12. ⚠️ Uncheck the **"URL-encode these characters"** box at the bottom. _This prevents Burp from altering the password format._
 13. Click **Start attack**.
@@ -49,12 +49,14 @@ The approach is explained in [Running a dictionary attack](https://portswigger.n
 
 **WFuzz** is a faster, free tool than Burp Suite Community edition. This exercise involves launching a realistic-sized dictionary attack using the `rockyou.txt` wordlist.
 
-📌 Download rockyou.txt:
+📌 Download rockyou.txt on kali:
 ```bash
 wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
 ```
-
+  
 More info: [WFuzz basic usage](https://wfuzz.readthedocs.io/en/latest/user/basicusage.html)
+
+> **Tip**: If you are having troubles with getting WFUZZ to work probably, you can start out with a list smaller then rockyou.txt.
 
 ### 📌 Steps:
 1. Create a crAPI user with a password found in `rockyou.txt`.
@@ -109,7 +111,7 @@ This exercise covers **Password Spraying**, which is useful when max login attem
 ### 📌 Steps:
 1. Create or reuse a crAPI user.
 2. Create a short wordlist of 5 likely passwords (include the real one).
-3. Use data from [Exercise 2](2_Exploiting_BOLA_And_Excessive_Data_Exposure.md) to enumerate usernames.
+3. Use data from [Exercise 2 in Exploting BOLA and Excessive data exposure](2_Exploiting_BOLA_And_Excessive_Data_Exposure.md) to enumerate usernames.
 4. Add the current user’s email to the wordlist.
 5. Capture a login request and send to Intruder.
 6. Highlight the `email` field and click **Add**.
