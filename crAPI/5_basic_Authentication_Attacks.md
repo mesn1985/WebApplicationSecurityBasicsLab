@@ -152,26 +152,35 @@ This exercise explores exploiting weak OTP and legacy API behavior.
 ---
 
 ### Step 3: Test OTP Brute Force Attempt
-1. Request OTP again.
-2. Enter wrong OTP and capture request to `/identity/api/auth/v3/check-otp`.
-3. Resend 10x and observe status change to 502.
+1. In the browser, Request An OTP again.
+2. Enter wrong OTP in the browser, and capture request to `/identity/api/auth/v3/check-otp`.
+3. Resend 10x using Burp suite Repeater, and observe status change to 503.
 4. Check the error message.
 
-> **Note**: While a `502` error often indicates a server issue, here it signals that the API has enforced a max-try lockout mechanism.
+> **Note**: While a `503` error is suppose to indicate a server issue, here it signals that the API has enforced a max-try lockout mechanism.
 
 ---
 
 ### Step 4: Bypass with Legacy API Version
 1. Modify path from `/v3/check-otp` to `/v2/check-otp`.
 2. Send 10+ bad requests.
-3. Confirm no 502 response—v2 does **not** enforce limits.
-
+3. Confirm no 503 response, meaning that v2 does **not** enforce limits.
+  
+When no limits are enforced, we can try to brute for the OTP. OTP's are just passwords, and we know that 4 digit make for a weak password.
 ---
 
 ### Step 5: Create OTP Wordlist
+We will create a wordlist with all posible OTP combination, from 0000 to 9999.
+This can be done with BASH with:
 
 ```bash
 for i in $(seq -f "%04g" 0 9999); do echo $i; done | iconv -f UTF-8 -t UTF-8 > wordlist.txt
+```
+  
+Or powershell with:
+  
+```powershell
+0..9999 | ForEach-Object { $_.ToString('D4') } | Out-File -FilePath wordlist.txt -Encoding utf8
 ```
 
 ---
