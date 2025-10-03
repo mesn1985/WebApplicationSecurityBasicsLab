@@ -87,15 +87,13 @@ This exercise demonstrates brute-forcing by attempting every possible character 
 2. Capture the login request in Burp Suite.
 3. Send it to Intruder.
 4. Set the email to match the user created.
-5. Highlight the `password` field and click **Add**.
+5. Highlight the value of the `password` field and click **Add**.
 6. In _Payload Type_, select **Brute forcer**.
 7. Set character set to `passwd`.
 
 > Note: This does not mean you're brute-forcing the password `passwd`. Instead, you're using the individual characters in "passwd" (p, a, s, w, d) to generate combinations. This is just a shortcut for illustration purposes.
 
 8. Set min and max length to 6.
-
-> Typo fixed: "Mx length" is now correctly stated as "Max length".
 
 9. Observe the payload count and request count — this is the total number of combinations Intruder will try.
 10. Click **Start attack** and let it run.
