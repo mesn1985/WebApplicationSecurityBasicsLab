@@ -115,9 +115,9 @@ The approach divides each password attempt across multiple users. This means it 
 4. Add the email adress you created in step 1 along with the email adresses found in step 3 to a wordlist.
 5. Capture a login request and send to Intruder.
 6. Set **Attack type** to _Cluster bomb_
-7. Highlight the `email` field and click **Add**. (This will be set 1 when you set the payload)
-8. Highlight the `password` field and click **Add**. (This will be set 2 when you set the payload)
-9. Set Payload Set 1 to the email wordlist.
+7. Highlight the value of the `email` field and click **Add**. (This will be set 1 when you set the payload)
+8. Highlight the the value of the `password` field and click **Add**. (This will be set 2 when you set the payload)
+9. Set Payload Set 1 to the email wordlist. (There is a dropdown menu to select this in the payload tab)
 10. Set Payload Set 2 to the password list.
 11. Uncheck "URL-encode these characters" in both payloads.
 12. Click **Start attack**.
