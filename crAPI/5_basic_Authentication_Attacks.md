@@ -187,9 +187,8 @@ Or powershell with:
 
 ### Step 6: Brute Force OTP
 
-1. Capture OTP reset request.
-2. Set path to `/v2/check-otp`.
-3. Use Burp or ZAP with the full wordlist.
+2. Send the OTP check request with legacy path to `/v2/check-otp`, to Burp suite intruder.
+3. Use  OTP wordlist to bruteforce the OTP.
 4. Look for a **200 OK** response.
 
 > **Expected Outcome**: OTP is brute-forced successfully and password is changed.
