@@ -35,7 +35,7 @@ In this exercise, you will test whether the Juice Shop backend properly validate
 5. **Modify the token in the Header** by appending a character; resend and observe the response.  
 6. **Modify the token in the Cookie** similarly; resend and observe the response.  
 7. **Remove the Authorization header completely** and resend; note if the response is still 200 OK.  
-8. Determine **which token the server validates** for this request path.
+8. which token the does server validate for this request path?.
 
 ### JWT Payload Manipulation
 
