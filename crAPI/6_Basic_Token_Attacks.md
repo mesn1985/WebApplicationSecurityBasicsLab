@@ -11,7 +11,8 @@
 ## ⚙️ Prerequisites
 
 - Complete the [Basic Authentication Attacks](5_basic_Authentication_Attacks.md) exercise.
-- Install the Burp Suite extension [JWT Editor](https://portswigger.net/burp/documentation/desktop/testing-workflow/session-management/jwts).
+- Install the Burp Suite extension [JWT Editor](https://portswigger.net/burp/documentation/desktop/testing-workflow/session-management/jwts).  
+> The JWT editor can be installed by selcting _Extensions_  in Burp suite and then install _JWT editor_ from _BApp store_
 
 > 🔍 **Tip**: If the **Extensions** tab is not visible in Burp, go to `View → Extensions`.
 
