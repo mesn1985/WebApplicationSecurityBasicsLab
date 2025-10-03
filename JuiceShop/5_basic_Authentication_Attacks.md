@@ -14,7 +14,9 @@
 ---
 
 ## 🔐 Brute-Forcing Juice Shop Administrator Password
-
+  
+> The tools or combination of tools you use for this exercise, is entirely up to you
+  
 The email address for the Juice Shop administrator is **admin@juice-sh.op**.  
 Your task is to discover the administrator’s password using the password wordlist `best1050.txt` from SecLists.
 
