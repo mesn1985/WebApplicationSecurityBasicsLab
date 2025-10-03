@@ -187,6 +187,7 @@ Or powershell with:
 
 ### Step 6: Brute Force OTP
 > Burp suite community is "throttled", meaning it is slow. Alternative free tools like **ZAP** can be used. 
+> Before starting the brute force attemp, ensure a new otp flow is stared
 
 1. Send the OTP check request with legacy path to `/v2/check-otp`, to Burp suite intruder.
 2. Use  OTP wordlist to bruteforce the OTP.
