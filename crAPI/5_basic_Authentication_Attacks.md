@@ -72,6 +72,8 @@ More info: [WFuzz basic usage](https://wfuzz.readthedocs.io/en/latest/user/basic
 
 ## 💥 Exhaustive Brute-Force Attack with Burp Suite
 
+>**Tip** This attack are performed using features from Burp suite, but could also be done With WFuzz, E.g. create a wordlist with all possible combinations of the character set
+
 This exercise demonstrates brute-forcing by attempting every possible character combination.
 
 ### 📌 Before You Begin:
@@ -128,8 +130,10 @@ The approach divides each password attempt across multiple users. This means it 
 ---
 
 ## 🔓 Attacking Password Recovery & OTP
-> Burp suite commmunity edition, is very slow, so you could choose to use Wfuzz or ZAP for step 3
+  
 This exercise explores exploiting weak OTP and legacy API behavior.
+  
+> Burp suite commmunity edition, is very slow, so you could choose to use Wfuzz or ZAP for step 3. Generativ AI can be very helpful, if you want to convert a request to a WFuzz command with all parameters
 
 ### Step 1: Understand crAPI's OTP Password Recovery
 1. Create a user.
