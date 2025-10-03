@@ -78,7 +78,6 @@ You should receive a **401 Unauthorized**, indicating the backend correctly vali
 - Which part of the application accepted the forged token, and why might that be?
 - What are the risks of placing roles or user identifiers directly in a JWT payload?
 - How can developers securely validate JWT tokens?
-- Why is it dangerous to rely solely on client-side claims without signature checks?
 
 ---
 
@@ -86,7 +85,6 @@ You should receive a **401 Unauthorized**, indicating the backend correctly vali
 
 In this exercise, you discovered that:
 
-- JWTs are **not encrypted**, only encoded.
 - Modifying JWT payloads can lead to **information disclosure** when signature checks are absent.
 - Proper backend validation of JWTs is essential to prevent unauthorized access.
 - Signature verification is **non-negotiable** in any secure authentication mechanism.
