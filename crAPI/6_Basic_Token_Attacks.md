@@ -54,8 +54,9 @@ You’ll need two accounts: _User A_ and _User B_.
 ### 📌 Steps
 
 1. As **User A**, log in and capture a **GET** request to the dashboard using Burp Suite.
+> Notice with JWT editor installed, all request that contains a JWT token, is highligthed in green
 2. Send the request to **Repeater**.
-3. Switch to the **JWT Editor** tab (green-highlighted).
+3. Switch to the **JWT Editor** tab.
 4. In the **payload** section, modify the `email` claim to use **User B’s** email.
 5. Click **Send**.
 6. Observe: the response now contains **User B’s information**.
