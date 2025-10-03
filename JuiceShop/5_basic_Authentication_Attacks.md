@@ -29,5 +29,5 @@ Your task is to discover the administrator’s password using the password wordl
 
 ## 🧠 Reflection
 - How many attempts did it take to guess the correct password?
-- What password did you find? Would this password meet your organization's security standards?
+- What password did you find? Would this password meet an organization's security standards?
 - What mitigation techniques could prevent this type of attack in a real-world application?

@@ -128,7 +128,7 @@ The approach divides each password attempt across multiple users. This means it 
 ---
 
 ## 🔓 Attacking Password Recovery & OTP
-
+> Burp suite commmunity edition, is very slow, so you could choose to use Wfuzz or ZAP for step 3
 This exercise explores exploiting weak OTP and legacy API behavior.
 
 ### Step 1: Understand crAPI's OTP Password Recovery
@@ -186,12 +186,14 @@ Or powershell with:
 ---
 
 ### Step 6: Brute Force OTP
+> Burp suite community is "throttled", meaning it is slow. Alternative free tools like **ZAP** can be used. 
 
-2. Send the OTP check request with legacy path to `/v2/check-otp`, to Burp suite intruder.
-3. Use  OTP wordlist to bruteforce the OTP.
-4. Look for a **200 OK** response.
+1. Send the OTP check request with legacy path to `/v2/check-otp`, to Burp suite intruder.
+2. Use  OTP wordlist to bruteforce the OTP.
+3. Look for a **200 OK** response.
 
 > **Expected Outcome**: OTP is brute-forced successfully and password is changed.
+
 
 ---
 
