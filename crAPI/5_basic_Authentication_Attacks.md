@@ -114,12 +114,12 @@ The approach divides each password attempt across multiple users. This means it 
 3. Use data from the EDE vulnerability found in [Exercise 2 in Exploting BOLA and Excessive data exposure](2_Exploiting_BOLA_And_Excessive_Data_Exposure.md) to gather 4 usernames(Mail adresses).
 4. Add the username you created in step 1 along with the usernames found in step 3 to a wordlist.
 5. Capture a login request and send to Intruder.
-6. Highlight the `email` field and click **Add**.
-7. Highlight the `password` field and click **Add**.
-8. Set **Attack type** to _Cluster bomb_.
+6. Set **Attack type** to _Cluster bomb_
+7. Highlight the `email` field and click **Add**. (This will be set 1 when you set the payload)
+8. Highlight the `password` field and click **Add**. (This will be set 2 when you set the payload)
 9. Set Payload Set 1 to the email list.
 10. Set Payload Set 2 to the password list.
-11. Uncheck "URL-encode these characters".
+11. Uncheck "URL-encode these characters" in both payloads.
 12. Click **Start attack**.
 13. Look for requests returning **HTTP 200 OK**.
 
