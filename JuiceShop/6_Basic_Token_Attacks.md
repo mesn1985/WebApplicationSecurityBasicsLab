@@ -12,6 +12,7 @@
 - Completion of the [crAPI Basic Token Attacks](../crAPI/6_Basic_Token_Attacks.md) exercise.  
 - Burp Suite installed with the [JWT Editor extension](https://portswigger.net/burp/documentation/desktop/testing-workflow/session-management/jwts).  
 - Familiarity with Burp Repeater and basic JWT concepts.
+- Burp suite installed, along with JWT editor
 
 ---
 
