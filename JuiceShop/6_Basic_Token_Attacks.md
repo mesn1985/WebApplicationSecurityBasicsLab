@@ -33,19 +33,20 @@ In this exercise, you will test whether the Juice Shop backend properly validate
 3. Send the request to **Burp Repeater**.  
 4. Inspect the request: note the `Authorization` token present in both the **Header** and **Cookie**.  
 
-We notice that token are included in both a header, and a cookie, so lets investigate which of the token are
+We notice that the token are included in both a header, and a cookie, so lets investigate which of the token are
 actaul used for validation in this path
 
 5. **Modify the token in the Header** by appending a character; resend and observe the response.  
 6. **Modify the token in the Cookie** similarly; resend and observe the response.  
-7. **Remove the Authorization header completely** and resend; note if the response is still 200 OK.  
-8. which token the does server validate for this request path?.
-
+7. Try to **Remove the Authorization header completely** and resend; note if the response is still 200 OK, and what is the response?
+8. which token the does server use for validation on this request path?, and which does it use for autentication?
+9. Change the request back to its original state before moving on.
+  
 ### JWT Payload Manipulation
 
 9. Using the **JWT Editor tab** in Burp Repeater or [jwt.io](https://jwt.io/), **change the payload**:  
    - Set `email` to `admin@juice-sh.op`  
-   - Set `id` to `1`  
+   - Set `id` to `1`  (We know from earlier, that user id's are given sequencelly)
 10. Resend the request with the modified token and observe the status code (likely 304).
 
 ### Using Unsigned Tokens
@@ -54,7 +55,7 @@ actaul used for validation in this path
     - Set `alg` to `none` in the JWT header  
     - Remove the signature entirely (token format: `<header>.<payload>.`)  
 12. Send the unsigned token request and confirm you receive a **200 OK** response.  
-13. **Save this unsigned token** for subsequent steps.
+13. **Save this unsigned token admin** for subsequent steps.
 
 ### Privilege Escalation: Changing Admin Password
 
@@ -69,8 +70,7 @@ actaul used for validation in this path
 ## 🔑 Key Concepts
 
 - Changing the `alg` field to `none` disables signature verification, allowing token forgery.  
-- Unsigned tokens are a critical security flaw enabling privilege escalation.  
-- Tokens sent in cookies or headers can be used differently by the server. Understanding this is essential for attack and defense.  
+- Unsigned tokens are a critical security flaw enabling privilege escalation.   
 - Proper JWT validation always requires verifying the signature server-side.
 
 ---
