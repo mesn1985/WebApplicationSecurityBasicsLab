@@ -105,12 +105,14 @@ This exercise demonstrates brute-forcing by attempting every possible character 
 ## 🧪 Password Spraying
 
 This exercise covers **Password Spraying**, which is useful when max login attempts are enforced.
+  
+The approach divides each password attempt across multiple users. This means it tries a single password with user A, then user B, then user C, and so on. By distributing attempts in this way, it avoids triggering account lockouts and increases the likelihood of success against systems that enforce a maximum number of login attempts per user.
 
 ### 📌 Steps:
 1. Create or reuse a crAPI user.
-2. Create a short wordlist of 5 likely passwords (include the real one).
-3. Use data from [Exercise 2 in Exploting BOLA and Excessive data exposure](2_Exploiting_BOLA_And_Excessive_Data_Exposure.md) to enumerate usernames.
-4. Add the current user’s email to the wordlist.
+2. Create a short wordlist of 5 likely passwords (include the one for the user created in step 1).
+3. Use data from the EDE vulnerability found in [Exercise 2 in Exploting BOLA and Excessive data exposure](2_Exploiting_BOLA_And_Excessive_Data_Exposure.md) to gather 4 usernames(Mail adresses).
+4. Add the username you created in step 1 along with the usernames found in step 3 to a wordlist.
 5. Capture a login request and send to Intruder.
 6. Highlight the `email` field and click **Add**.
 7. Highlight the `password` field and click **Add**.
