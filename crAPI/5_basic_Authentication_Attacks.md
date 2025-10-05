@@ -15,11 +15,11 @@ The purpose of these exercises is to introduce basic attack techniques against u
 
 Before starting these exercises, you should have completed the 4 previous ones to ensure basic skills with Burp Suite and Kali Linux.
 
-You will be using **Burp Suite Intruder**. A guide to its fundamentals is [here](https://portswigger.net/burp/documentation/desktop/tools/intruder/getting-started).
-
+You will be using **Burp Suite Intruder**. A guide to its fundamentals is [here](https://portswigger.net/burp/documentation/desktop/tools/intruder/getting-started).  
+As a better Alternatively you can use **WFuzz**. I is alot faster than Burp suite community, but also a bit more advanced in regards to CLI Commands.
 ---
 
-## 🔐 Dictionary Attack with Burp Suite
+## 🔐 Dictionary Attack with Burp Suite(Or WFUZZ if you want it to go faster)
 
 In this exercise, you will use a **wordlist of passwords** that you create yourself and run a dictionary attack against a crAPI user. The idea is to try multiple likely passwords until the correct one is found.
 

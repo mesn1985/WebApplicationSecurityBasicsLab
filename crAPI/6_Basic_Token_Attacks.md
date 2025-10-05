@@ -44,10 +44,12 @@ Go to [https://jwt.io/](https://jwt.io/) and perform the following:
 
 ## 🎭 Manipulating the JWT Payload
 
-This exercise shows how improper validation of JWT tokens can lead to unauthorized data access.
+This exercise shows how improper validation of JWT tokens can be performed on one endpoint of an API, but
+not the other endpoints.
 
 ### 🎯 Objective
-Demonstrate **information disclosure** by manipulating a JWT's payload and observing a successful response.
+Demonstrate that different endpoint in the API can validate the tokens differently. You will manipulate, a token,
+to confirm that one endpoint does not validate it properly, will another does. The purpose of this exercise is **not to exploit a weakness**
 
 You’ll need two accounts: _User A_ and _User B_.
 
