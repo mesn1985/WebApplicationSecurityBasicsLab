@@ -53,7 +53,7 @@ actaul used for validation in this path
 
 11. In Burp Repeater’s JWT Editor, click **Attack → none signing Algorithm** to:  
     - Set `alg` to `none` in the JWT header  
-    - Remove the signature entirely (token format: `<header>.<payload>.`)  
+    __Removes the signature entirely, and sets header alg to _None_ (token format: `<header>.<payload>.`)__  
 12. Send the unsigned token request and confirm you receive a **200 OK** response.  
 13. **Save this unsigned token admin** for subsequent steps.
 
