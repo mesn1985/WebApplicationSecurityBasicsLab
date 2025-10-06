@@ -195,9 +195,10 @@ Or powershell with:
 > Burp suite community is "throttled", meaning it is slow. Alternative free tools like **ZAP** can be used. 
 > Before starting the brute force attemp, ensure a new otp flow is stared
 
-1. Send the OTP check request with legacy path to `/v2/check-otp`, to Burp suite intruder.
-2. Use  OTP wordlist to bruteforce the OTP.
-3. Look for a **200 OK** response.
+1. Start a new password recovery flow. 
+2. Send the OTP check request with legacy path to `/v2/check-otp`, to Burp suite intruder.
+3. Use  OTP wordlist to bruteforce the OTP.
+4. Look for a **200 OK** response.
 
 > **Expected Outcome**: OTP is brute-forced successfully and password is changed.
 
