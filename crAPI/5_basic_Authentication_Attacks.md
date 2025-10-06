@@ -172,6 +172,7 @@ This exercise explores exploiting weak OTP and legacy API behavior.
 3. Confirm no 503 response, meaning that v2 does **not** enforce limits.
   
 When no limits are enforced, we can try to brute for the OTP. OTP's are just passwords, and we know that 4 digit make for a weak password.
+  
 ---
 
 ### Step 5: Create OTP Wordlist
