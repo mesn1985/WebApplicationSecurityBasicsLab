@@ -31,14 +31,14 @@ A JWT token consists of:
 
 ### 🧪 Activity: Explore JWT Tokens
 
-Go to [https://jwt.io/](https://jwt.io/) and perform the following:
+Go to [https://jwt.io/](https://jwt.io/) and perform the following using JWT Encoder:
 
 1. Change the value of `sub`. How drastically does the signature change?
 2. Change the value of `iat`. What happens to the signature?
 3. Copy and decode the JWT header in a base64 decoder. What metadata do you see?
 4. Decode the JWT payload. What claims are visible?
 
-> 🔍 Reflection: Base64 encoding does **not** protect the contents of a JWT. If sensitive data is in the payload, anyone can read it.
+> 🔍 Reflection: Base64 encoding does **not** protect the contents of a JWT. If sensitive data is in the payload, anyone can read it. But changing the content of JWT _header_ or _payload_ significantly changes the signature.
 
 ---
 
