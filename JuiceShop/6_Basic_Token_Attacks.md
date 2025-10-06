@@ -44,7 +44,7 @@ actaul used for validation in this path
   
 ### JWT Payload Manipulation
 
-9. Using the **JWT Editor tab** in Burp Repeater or [jwt.io](https://jwt.io/), **change the payload**:  
+9. Using the **JWT Editor tab** in Burp Repeater, **change the payload**:  
    - Set `email` to `admin@juice-sh.op`  
    - Set `id` to `1`  (We know from earlier, that user id's are given sequencelly)
 10. Resend the request with the modified token and observe the status code (likely 304).
