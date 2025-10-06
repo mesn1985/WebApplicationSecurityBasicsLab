@@ -14,9 +14,10 @@ The purpose of these exercises is to introduce basic attack techniques against u
 ## 🔧 Prerequisites
 
 Before starting these exercises, you should have completed the 4 previous ones to ensure basic skills with Burp Suite and Kali Linux.
-
+  
+--
 You will be using **Burp Suite Intruder**. A guide to its fundamentals is [here](https://portswigger.net/burp/documentation/desktop/tools/intruder/getting-started).  
-As a better Alternatively you can use **WFuzz**. I is alot faster than Burp suite community, but also a bit more advanced in regards to CLI Commands.
+As a more effective Alternative you can use **WFuzz**. It is alot faster than Burp suite community, but also a bit more advanced in regards to CLI Commands. The decision is yours.
 ---
 
 ## 🔐 Dictionary Attack with Burp Suite(Or WFUZZ if you want it to go faster)
