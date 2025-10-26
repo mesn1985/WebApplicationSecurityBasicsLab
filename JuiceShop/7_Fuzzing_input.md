@@ -24,7 +24,7 @@ OR 1==1
 4. Observe the responses. Does any response body contain interesting information?  
 > 💡 **Hint:** Before starting fuzzing, capture and note a baseline response for the endpoint. This will help you identify unusual or error responses during your fuzzing attempts.
 
-5. Reset the password to a static value.
+5. clear the password field to a static value, so the value is no longer fuzzed.
 6. Fuzz the username field with the same wordlist.
 7. Identify responses with HTTP 500 status code that contain notable content.
 
