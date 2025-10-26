@@ -40,7 +40,7 @@ You’ll begin by trying to discover a possible **SQL injection** vulnerability 
 3. Highlight the value of `coupon` and mark it as the **payload position**.
 4. Use the wordlist **`Generic-SQLI`** from **Seclists** as payload.  
    - 📁 Example path in Kali Linux: `/usr/share/seclists/Fuzzing/Generic-SQLi.txt`
-   - Can also be found seclists [Github repository](https://github.com/danielmiessler/SecLists/blob/master/Fuzzing/Databases/SQLi/Generic-SQLi.txt)
+   - Can also be found in seclists [Github repository](https://github.com/danielmiessler/SecLists/blob/master/Fuzzing/Databases/SQLi/Generic-SQLi.txt)
 5. Run the attack.
 6. Observe the responses:
    - What are the baseline **status codes** and **content lengths**?
