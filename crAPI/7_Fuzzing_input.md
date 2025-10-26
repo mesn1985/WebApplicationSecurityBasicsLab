@@ -48,7 +48,10 @@ You’ll begin by trying to discover a possible **SQL injection** vulnerability 
 
 > 🔍 A "baseline" is the common status code and content length returned for normal (non-malicious) input. Deviations from this may indicate a vulnerability.
 
-If no anomalies are found, the backend may use a **NoSQL** database instead. In that case, try fuzzing with **NoSQL-specific** payloads.
+If no anomalies are found, the backend may use a **NoSQL** database instead. There might be some error code 500 that could indicate a reaction to the fuzz values,
+but if there is little to no indicator, lets continue to fuzz wide and try fuzzing with **NoSQL-specific** payloads, to see if this yields stronger indicators.
+  
+**Don't clear burpsuite intruder, we will use the same request, but fuzz test with No-SQL injections instead**
 
 ---
 
