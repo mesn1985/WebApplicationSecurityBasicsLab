@@ -58,7 +58,7 @@ You’ll need two accounts: _User A_ and _User B_.
 > Notice with JWT editor installed, all request that contains a JWT token, is highligthed in green
 2. Send the request to **Repeater**.
 3. Switch to the **JSON Web token** tab.
-4. In the **payload** section, modify the `email` claim to use **User B’s** email.
+4. In the **payload** section, modify the `email` claim in the jWT token, to use **User B’s** email.
 5. Click **Send**.
 6. Observe: the response now contains **User B’s information**.
 
