@@ -22,11 +22,11 @@ SQL Injection is an attack where an attacker manipulates SQL queries by injectin
 
 ### Steps
 
-1. In Juice Shop, attempt to login with username: `'` and password: `123`. Capture the response.
-2. Inspect the response; it should be an error (usually HTTP 500). Note the error type.
-3. Look for the SQL query printed in the error message; copy it for analysis.
-4. Replace the email value in the SQL query with: `' OR TRUE --` and consider what effect this has on the query.
-5. Login again using the username: `' OR TRUE --` and password: `123`.
+1. In Juice Shop, attempt to authenticate with username: `'` and password: `123`. Capture the response.
+2. Inspect the response; it should be an error (usually HTTP 500). Take Notice of the error type.
+3. Look for the SQL query printed in the error message; And copy it to a text editor.
+4. Replace the email value in the copied SQL query with: `' OR TRUE --` and consider what effect this has on the query.
+5. In Juiceshop, Authenticate again using the username: `' OR TRUE --` and password: `123`.
 6. Check which user you are authenticated as.
 
 > ⚠️ Exposing SQL queries or stack traces is a serious security flaw as it aids attackers.
@@ -45,7 +45,7 @@ DOM XSS is a client-side vulnerability where malicious scripts execute in the br
 
 ### Steps
 
-1. Search for `hey` and observe the result.
+1. In the juiceshop search bar, Search for `hey` and observe the result.
 2. Search for `<h6>hey</h6>` and observe the change in font size, indicating HTML is not encoded.
 3. Search for `&#60;h6&#62;hey&#60;/h6&#62;` to see the raw HTML output.
 4. Try injecting a script tag: `<script>alert('You got hacked')</script>`. Observe that it does not execute.
