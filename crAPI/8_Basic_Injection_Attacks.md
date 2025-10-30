@@ -34,7 +34,7 @@ In the previous fuzzing exercise, the input `{ "$ne": null }` triggered an unusu
 
 ### 📌 Steps
 1. In the crAPI web app, attempt to validate a coupon and capture the request in Burp Suite.
-2. Modify the coupon code in the request body to: `{ "$ne": 1 }`
+2. Modify the coupon code value in the request body to: `{ "$ne": 1 }`
 3. Observe and interpret the response. If successful, note the returned coupon—you will need it for the next task.
 
 > 🧠 NoSQL databases like MongoDB do **not** use SQL. Instead, they rely on structured documents (typically JSON). Learn more about [MongoDB here](https://www.mongodb.com/nosql-explained).
