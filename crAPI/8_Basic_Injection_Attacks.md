@@ -33,7 +33,7 @@ Before starting, you should have completed the [Fuzzing Input](./7_Fuzzing_input
 In the previous fuzzing exercise, the input `{ "$ne": null }` triggered an unusual response. You will now attempt to exploit this as a NoSQL injection vulnerability.
 
 ### 📌 Steps
-1. In the crAPI web app, validate a coupon and capture the request in Burp Suite.
+1. In the crAPI web app, attempt to validate a coupon and capture the request in Burp Suite.
 2. Modify the coupon code in the request body to: `{ "$ne": 1 }`
 3. Observe and interpret the response. If successful, note the returned coupon—you will need it for the next task.
 
