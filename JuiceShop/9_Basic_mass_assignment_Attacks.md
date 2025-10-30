@@ -20,6 +20,7 @@ First you must:
 
 Once you have done that, sign in to the juice page, and confirm that you can
 enter the admin page at the url: http://localhost:3000/#/administration
+_You will probably need to authenticate_
 
 ## 🧠 Reflection
 - How did the server fail to protect against unauthorized role assignment?

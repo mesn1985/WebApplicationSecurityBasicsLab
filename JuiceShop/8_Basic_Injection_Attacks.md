@@ -46,8 +46,8 @@ DOM XSS is a client-side vulnerability where malicious scripts execute in the br
 ### Steps
 
 1. In the juiceshop search bar, Search for `hey` and observe the result.
-2. Search for `<h6>hey</h6>` and observe the change in font size, indicating HTML is not encoded.
-3. Search for `&#60;h6&#62;hey&#60;/h6&#62;` to see the raw HTML output.
+2. Search for `<h6>hey</h6>` and observe the change in font size of the search result, indicating that input is not HTML encoded.
+3. Search using HTML encoding `&#60;h6&#62;hey&#60;/h6&#62;` to see the raw HTML output.
 4. Try injecting a script tag: `<script>alert('You got hacked')</script>`. Observe that it does not execute.
 5. Inject an iframe with JS payload: `<iframe src="javascript:alert('You got hacked')">` and see if it executes.
 6. Try an image tag with an error event handler: `<img src=x onerror=alert('You got hacked')>`.
