@@ -2,7 +2,7 @@
 
 ### 🎯 Objective
 Understand the role of active reconnaissance in API testing.  
-Learn how to discover attack surfaces using tools like Nmap, Gobuster, and ZAP.  
+Learn how to discover attack surfaces using tools like Nmap and Gobuster. 
 Identify exposed ports, services, and undocumented URL paths that may be vulnerable in real-world environments.
 
 ---
@@ -20,9 +20,9 @@ Afterwards, you will enumerate crAPI to determine available URL paths.
 
 The [setup of the lab](../README.md) should be completed.
   
-All the tool are executed on Kali Linux. I use [Kali](https://www.kali.org/docs/wsl/wsl-preparations/) on WSL for convenience,
-but any instance should to.  
-> _When using Kali Linux on WSL, the services from the docker enviroment, should be accesible on the network interface loopback adresse(127.0.0.1)_
+All the tools are executed on Kali Linux. I use [Kali](https://www.kali.org/docs/wsl/wsl-preparations/) on WSL for convenience,
+but any Kali Linux instance should work.  
+> _When using Kali Linux on WSL, the services from the Docker environment should be accessible through the loopback interface (127.0.0.1)_
 
 The wordlists from [SecLists](https://www.kali.org/tools/seclists/) should be installed along with [Gobuster](https://www.kali.org/tools/gobuster/) on a Kali Linux instance.
 
@@ -31,7 +31,7 @@ If you use a virtual machine, ensure that a NAT is configured between the host a
 
 Wordlist paths in Kali WSL are:
 - `/usr/share/seclists/Discovery/Web-Content/common.txt`
-- `/usr/share/seclists/Discovery/Web-Content/quickhits.txt`
+- `/usr/share/seclists/Discovery/Web-Content/api/api-endpoints.txt`
 
 To familiarize yourself with Gobuster, you can watch this [intro tutorial](https://www.youtube.com/watch?v=HjXNK-mYwDQ)
 
@@ -103,46 +103,67 @@ To reduce scan noise, consider using a [delay option](https://hackertarget.com/g
 > Save the valid paths discovered with Gobuster into a file named `gobuster_common.txt`,  
 > or use a central file like `crAPI_wordlist.txt` to consolidate results from multiple scans.
 
-Gobuster is a highly aggressive scanner and generates significant traffic — making it easily detectable by intrusion detection systems (IDS).  
-To reduce scan noise, consider using a [delay option](https://hackertarget.com/gobuster-tutorial/) between requests.
+---
+
+## 4 – Continue Enumerating Discovered Paths with `common.txt`
+
+The previous Gobuster scan identified several paths within crAPI.
+
+A discovered path may itself contain additional resources that are not visible when only enumerating the application root.
 
 🧪 Perform the following:
-- Run Gobuster against crAPI with the `common.txt` wordlist. **Remember to use HTTPS.**
-- Record all paths that return status codes `200` or `300` into a file named `crAPI_wordlist.txt`.
+
+- Review the paths discovered in step 3.
+
+- Choose one or more interesting paths and use Gobuster with `common.txt` to enumerate them further.
+
+- Add the discovered path to the target URL before running the scan.
+
+- Investigate and handle any responses that prevent Gobuster from completing the enumeration.
+
+- Examine any newly discovered paths.
+
+- Add useful findings to your `crAPI_wordlist.txt`.
+
+> 💡 **Hint:** Not every discovered path will contain additional resources.
+
+> 💡 **Hint:** Different parts of the application may respond differently to invalid requests.
+
+> 📁 **Tip:** You can save the results from these scans in separate files, or continue adding verified paths to your `crAPI_wordlist.txt`.
+
+Continue enumeration where your findings suggest that additional resources may exist.
 
 ---
 
-## 4 – Enumerating crAPI with Gobuster and the Wordlist `quickhits.txt`
+## 5 – Enumerating crAPI with an API-Specific Wordlist
 
-Repeat the process from step 3, but now use the `quickhits.txt` wordlist.
+So far, you have used the general-purpose `common.txt` wordlist to discover and further enumerate paths within crAPI.
 
-🧪 Perform the following:
-- Run Gobuster with the `quickhits.txt` wordlist.
-- Append all positive responses (200s and 300s) to your `crAPI_wordlist.txt`.
-- One path reveals a potential vulnerability — can you spot it? (No exploitation needed — just identify it.)
+SecLists also contains wordlists designed specifically for API endpoint discovery.
 
-> 💡 Hint: Look for endpoints that return more information than expected — or ones that suggest admin-level or internal access.
-> 💡 Hint: Look for paths that suggest admin interfaces, debugging tools, internal documentation, or unexpected exposure of data.
+Use the following wordlist:
 
-> 📁 **Tip:** You can save results from this scan in a separate file like `gobuster_quickhits.txt`,  
-> or continue appending them to `crAPI_wordlist.txt` for a comprehensive path list.
-
-Your wordlist now reflects verified paths for crAPI. It’s a valuable tool for future scans.
-
----
-
-## 5 – Enumerating crAPI with ZAP
-
-[OWASP ZAP](https://www.zaproxy.org/) is a free and open-source web analysis tool.  
-Unlike [Burp Suite](https://portswigger.net/burp), ZAP provides full functionality without requiring a paid license.
-
-You’ll use ZAP’s automated scanning to map crAPI and detect potential issues.
+`/usr/share/seclists/Discovery/Web-Content/api/api-endpoints.txt`
 
 🧪 Perform the following:
-- Run an **automated scan** using the **AJAX spider**.
-- Review the **Site Tree** in the left pane — what do you learn?
-- Review the **Alerts** — do any match vulnerabilities from step 4?
-- Explore the **AJAX Spider** pane — what information does it reveal?
+
+- Use Gobuster with the `api-endpoints.txt` wordlist against paths discovered during the previous exercises.
+
+- Investigate and handle any responses that prevent Gobuster from completing the enumeration.
+
+- Compare the results with those obtained using `common.txt`.
+
+- Examine any newly discovered endpoints and their HTTP responses.
+
+- Add useful findings to your `crAPI_wordlist.txt`.
+
+> 💡 **Hint:** Different wordlists may reveal different parts of an application's attack surface.
+
+> 💡 **Hint:** A discovered endpoint does not necessarily need to return `200 OK` to be interesting.
+
+> 📁 **Tip:** You can save the results from these scans in separate files such as `gobuster_api.txt`, or continue adding verified paths to your `crAPI_wordlist.txt`.
+
+Compare what you discovered using the general-purpose and API-specific wordlists. Consider why one wordlist may discover endpoints that the other does not.
 
 ---
 
@@ -152,13 +173,28 @@ You’ll use ZAP’s automated scanning to map crAPI and detect potential issues
 2. Which tool gave you the most useful information about crAPI’s structure — and why?  
 3. How could an attacker use the discovered endpoints to plan a more targeted attack?  
 4. If an endpoint always returns 200 OK, how can that mislead automation tools like Gobuster?  
-5. How would you explain the purpose of active reconnaissance to a non-technical stakeholder?  
-6. How did ZAP's results compare with Gobuster and Nmap? What did it reveal that the other tools didn’t — and vice versa?
+5. How would you explain the purpose of active reconnaissance to a non-technical stakeholder? 
 
 ---
+  
+### ✅ Learning Check
 
+After completing this exercise, you should be able to say:
+
+- [ ] I can identify exposed ports and services using Nmap.
+- [ ] I can enumerate from the root path of a web application.
+- [ ] I can continue enumeration from discovered subpaths.
+- [ ] I can recognize and investigate false-positive responses during enumeration.
+- [ ] I can choose between a general-purpose and an API-specific wordlist.
+- [ ] I can use an API-specific wordlist to discover API endpoints.
+- [ ] I can compare results from different wordlists.
+- [ ] I can investigate HTTP responses to determine whether a discovered path is interesting.
+- [ ] I can build and maintain a list of discovered paths for later testing.
+
+If you can perform these tasks without following the exercise step-by-step, you have achieved the main learning objectives.
+---
 ⚖️ **Ethical Reminder**
 
-Tools like Gobuster, Nmap, and ZAP generate significant amounts of traffic and can unintentionally cause service disruptions or trigger alarms.  
+Tools like Gobuster, Nmap generate significant amounts of traffic and can unintentionally cause service disruptions or trigger alarms.  
 Always conduct scanning **only** in isolated test environments where you have **explicit authorization**.  
 Never scan production systems, client infrastructure, or unknown networks without proper permission.
