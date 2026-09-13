@@ -116,6 +116,7 @@ Gobuster is a highly aggressive scanner and generates significant traffic — ma
 To reduce scan noise, consider using a [delay option](https://hackertarget.com/gobuster-tutorial/) between requests.
 
 🧪 Perform the following:
+  
 - Run Gobuster against crAPI with the `common.txt` wordlist. **Remember to use HTTPS.**
 - Record all paths that return status codes `200` or `300` into a file named `crAPI_wordlist.txt`.
 - Examine the discovered paths and identify whether any expose information that should not normally be publicly accessible.
@@ -140,7 +141,7 @@ A discovered path may itself contain additional resources that are not visible w
 > Only enumerate paths belonging to the local crAPI lab. Do not substitute external domains or IP addresses.
   
 🧪 Perform the following:
-
+  
 - Review the paths discovered in step 3.
 
 - Choose one or more interesting paths and use Gobuster with `common.txt` to enumerate them further.
@@ -177,7 +178,7 @@ Use the following wordlist:
 `/usr/share/seclists/Discovery/Web-Content/api/api-endpoints.txt`
 
 🧪 Perform the following:
-
+  
 - Use Gobuster with the `api-endpoints.txt` wordlist against paths discovered during the previous exercises.
 
 - Investigate and handle any responses that prevent Gobuster from completing the enumeration.
