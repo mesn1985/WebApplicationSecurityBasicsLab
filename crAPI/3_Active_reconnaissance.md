@@ -8,8 +8,28 @@ Identify exposed ports, services, and undocumented URL paths that may be vulnera
 ---
 
 Active reconnaissance is about identifying the attack surfaces of a system.  
-In these exercises, you will begin by first scanning all the ports of a host and identifying running services.  
+In these exercises, you will begin by scanning all ports on a host and identifying running services.  
 Afterwards, you will enumerate crAPI to determine available URL paths.
+
+---
+   
+> ⚠️ **Scope and Authorization**
+>
+> This exercise must only be performed against the local lab environment.
+>
+> Unless your lab setup explicitly specifies otherwise, all scanning and enumeration should remain within:
+>
+> `127.0.0.1`
+>
+> Do **not** replace the target with public websites, external IP addresses, or systems you do not own or have explicit permission to test.
+>
+> For example, do not run Nmap, Gobuster, or similar reconnaissance tools against domains such as `google.com`, `github.com`, or other Internet-facing services as part of this exercise.
+>
+> During enumeration, you may encounter paths, parameters, redirects, or wordlist entries that contain external URLs. Do not intentionally follow, probe, or modify these in a way that sends testing traffic to external systems.
+>
+> Keep all testing inside the authorized lab environment.
+  
+---
 
 > 🛡️ **Why this matters in the real world:**  
 > Reconnaissance is often the first phase in a real attack.  
@@ -98,7 +118,11 @@ To reduce scan noise, consider using a [delay option](https://hackertarget.com/g
 🧪 Perform the following:
 - Run Gobuster against crAPI with the `common.txt` wordlist. **Remember to use HTTPS.**
 - Record all paths that return status codes `200` or `300` into a file named `crAPI_wordlist.txt`.
-
+- Examine the discovered paths and identify whether any expose information that should not normally be publicly accessible.
+  
+> 💡 **Hint:** Try opening interesting discovered paths directly in your browser or requesting them with `curl`.  
+> What does the response reveal, and does the content appear appropriate for a publicly accessible resource?
+  
 > 💡 **Tip: Name your wordlist files clearly**  
 > Save the valid paths discovered with Gobuster into a file named `gobuster_common.txt`,  
 > or use a central file like `crAPI_wordlist.txt` to consolidate results from multiple scans.
@@ -110,7 +134,11 @@ To reduce scan noise, consider using a [delay option](https://hackertarget.com/g
 The previous Gobuster scan identified several paths within crAPI.
 
 A discovered path may itself contain additional resources that are not visible when only enumerating the application root.
-
+  
+> ⚠️ **Stay within scope:**  
+> When adding discovered paths to the target URL, keep the target host as `127.0.0.1`.  
+> Only enumerate paths belonging to the local crAPI lab. Do not substitute external domains or IP addresses.
+  
 🧪 Perform the following:
 
 - Review the paths discovered in step 3.
@@ -136,6 +164,9 @@ Continue enumeration where your findings suggest that additional resources may e
 ---
 
 ## 5 – Enumerating crAPI with an API-Specific Wordlist
+  
+> ⚠️ **Scope reminder:**  
+> Wordlists may contain entries that resemble external URLs or reference public services. Keep your enumeration targeted at the local crAPI instance and do not intentionally send reconnaissance traffic to external systems.
 
 So far, you have used the general-purpose `common.txt` wordlist to discover and further enumerate paths within crAPI.
 
@@ -193,8 +224,13 @@ After completing this exercise, you should be able to say:
 
 If you can perform these tasks without following the exercise step-by-step, you have achieved the main learning objectives.
 ---
-⚖️ **Ethical Reminder**
+  
+## ⚖️ Ethical Reminder
 
-Tools like Gobuster, Nmap generate significant amounts of traffic and can unintentionally cause service disruptions or trigger alarms.  
-Always conduct scanning **only** in isolated test environments where you have **explicit authorization**.  
-Never scan production systems, client infrastructure, or unknown networks without proper permission.
+Tools such as Gobuster and Nmap can generate significant amounts of traffic and may unintentionally cause service disruptions or trigger security controls.
+
+Only use these tools against systems you own or systems for which you have explicit authorization to test.
+
+For this exercise, keep all reconnaissance within the local lab environment (`127.0.0.1`) unless your instructor or lab documentation explicitly defines another authorized target.
+
+Never scan public websites, Internet-facing systems, client infrastructure, or unknown networks without explicit permission.
