@@ -53,7 +53,6 @@ Parallel to [crAPI Exercise 4 - Swagger Enumeration](../crAPI/3_Active_reconnais
 ### 🔎 Discussion:
 - What information does Swagger expose?
 - Why might this be a **security risk**?
-- What lessons carry over from the similar Swagger exposure in crAPI?
 
 ---
 
