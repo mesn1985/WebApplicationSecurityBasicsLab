@@ -68,17 +68,6 @@ This step deepens what you practiced in [crAPI Exercise 5](../crAPI/3_Active_rec
 
 ---
 
-## 5. 🧪 Enumerating Juice Shop with ZAP
-
-Repeat your process from [crAPI Exercise 6 - ZAP Scanner](../crAPI/3_Active_reconnaissance.md).
-
-- Run an active scan using OWASP ZAP.
-- What alerts are raised?
-- What can you infer from the site map?
-- Are there any hidden or undocumented paths?
-
----
-
 ## 🧠 Reflection Questions
 
 - How did the results differ from the crAPI enumeration tasks?
