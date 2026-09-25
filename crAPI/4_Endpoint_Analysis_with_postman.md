@@ -74,10 +74,12 @@ Obtain a bearer token from Burp and use it in Postman to authenticate future req
 🧪 **Do this:**
 1. Use Burp to capture the **POST /login** request and its **response**.
 2. Copy the **token** value (exclude quotes) from the response.
-3. In Postman, click the **crAPI collection** which  will show the collection overview in the main right side window.
-4. Go to the **Auth** tab in the right side window.
+3. In Postman, double click the **crAPI collection** which  will show the collection overview in the main right side window.
+4. Go to  **Auth**  in the right side window.
 5. Select **Bearer Token** and paste the token into the **token** filed.
+6. Click **Save**
 
+> 🔐 If a security notification about sensetive information pops up, just choose "override" as action.
 > 🔐 You’ve now configured all requests in the collection to use this token automatically.
 
 ---
