@@ -25,9 +25,9 @@ This exercise serves both as a Postman introduction and a repetition of prior te
 In this task, you'll create a reusable collection of HTTP requests for crAPI.
 
 🧪 **Do this:**
-1. In Postman, click the **Collections** tab (left panel).
-2. Click the `+` next to **Collections** and select **Blank Collection**.
-3. Rename it to **crAPI**.
+1. In Postman, click the **+** button next filter text  field (left panel).
+2. Choose **Collections**.
+3. Rename the new collection,to **crAPI**.
 
 ---
 
