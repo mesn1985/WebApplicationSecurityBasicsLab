@@ -36,7 +36,7 @@ In this task, you'll create a reusable collection of HTTP requests for crAPI.
 You'll use Burp Suite to intercept the signup request and replicate it in Postman.
 
 🧪 **Do this:**
-1. Use Burp Suite to capture the **POST /signup** request during user registration.
+1. Use Burp Suite to capture the **POST** request for signup, during user registration.
 2. In Postman, create a new **POST** request inside the `crAPI` collection named `signup`.
 3. Paste the intercepted **URL** into the Postman request.(Burp suite only have the path, remember to append protocol, ip and port number:)
 4. Copy the **JSON body** from Burp and paste it into Postman’s request body:
