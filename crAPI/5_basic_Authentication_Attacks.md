@@ -205,8 +205,8 @@ Or powershell with:
 💡 Tip — Choose the tool based on the task
   
 For a short test list, Burp Suite Intruder is usually sufficient and makes it easy to inspect individual requests and responses.
-
 For the complete 10,000-value wordlist, WFuzz or OWASP ZAP will generally be more practical than Burp Suite Community Edition.
+  
 ---
 
 ### Step 6: Brute Force OTP
