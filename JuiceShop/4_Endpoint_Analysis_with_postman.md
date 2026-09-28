@@ -13,7 +13,7 @@ You should have completed the [Postman exercise with crAPI](../crAPI/4_Endpoint_
 
 ---
 
-## 1 - Exploring Swagger Documentation for Juice Shop
+<!-- ## 1 - Exploring Swagger Documentation for Juice Shop
 
 In [3 Active Reconnaissance - Exercise 4](3_Active_reconnaissance.md), you discovered the endpoint `/api-docs/swagger.json`. This is a Swagger endpoint, built around the [OpenAPI Specification](https://swagger.io/docs/specification/about/), used to describe and document APIs.
 
@@ -28,9 +28,9 @@ Visit the Swagger JSON endpoint to understand how Juice Shop’s API is structur
 
 > 🧠 *Reflection*: Could this Swagger documentation itself be considered an information disclosure risk? How might it help an attacker understand the internal structure of the application?
 
----
+--- -->
 
-## 2 - Build a Juice Shop Postman Collection
+## 1 - Build a Juice Shop Postman Collection
 
 Just like in [crAPI - Endpoint Analysis with Postman](../crAPI/4_Endpoint_Analysis_with_postman.md), you will now construct your own request collection for Juice Shop.
 
