@@ -144,7 +144,10 @@ The approach divides each password attempt across multiple users. This means it 
   
 This exercise explores exploiting weak OTP and legacy API behavior.
   
-> Burp suite commmunity edition, is very slow, so you could choose to use Wfuzz or ZAP for step 3. Generativ AI can be very helpful, if you want to convert a request to a WFuzz command with all parameters
+💡 Tooling Tip
+  
+Burp Suite Community Edition is relatively slow for large brute-force attacks. It works well for understanding and testing the request flow, but for larger payload sets you may prefer a faster tool such as WFuzz or OWASP ZAP.
+If needed, you can also use a generative AI tool to help translate a captured HTTP request into the equivalent WFuzz command, including headers and request-body parameters.
 
 ### Step 1: Understand crAPI's OTP Password Recovery
 1. Create a user.
@@ -198,7 +201,12 @@ Or powershell with:
 ```powershell
 0..9999 | ForEach-Object { $_.ToString('D4') } | Out-File -FilePath wordlist.txt -Encoding utf8
 ```
+  
+💡 Tip — Choose the tool based on the task
+  
+For a short test list, Burp Suite Intruder is usually sufficient and makes it easy to inspect individual requests and responses.
 
+For the complete 10,000-value wordlist, WFuzz or OWASP ZAP will generally be more practical than Burp Suite Community Edition.
 ---
 
 ### Step 6: Brute Force OTP
