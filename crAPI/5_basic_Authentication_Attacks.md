@@ -46,28 +46,38 @@ The approach is explained in [Running a dictionary attack](https://portswigger.n
 
 ---
 
+---
+
 ## 🚀 Dictionary Attack with WFuzz
 
-**WFuzz** is a faster, free tool than Burp Suite Community edition. This exercise involves launching a realistic-sized dictionary attack using the `rockyou.txt` wordlist.
+**WFuzz** is a faster, free alternative to Burp Suite Community Edition. In this exercise, you will launch a realistic-sized dictionary attack using the `rockyou.txt` wordlist.
 
-📌 Download rockyou.txt on kali:
+📌 Download `rockyou.txt` on Kali:
+
 ```bash
 wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
 ```
-  
+
 More info: [WFuzz basic usage](https://wfuzz.readthedocs.io/en/latest/user/basicusage.html)
 
-> **Tip**: If you are having troubles with getting WFUZZ to work probably, you can start out with a list smaller then rockyou.txt.
+> **💡 Tip — Test with a small wordlist first**
+>
+> Before using the full `rockyou.txt` wordlist, it is a good idea to test your WFuzz command with a much smaller list containing only a few passwords.
+>
+> This lets you verify that the request format, headers, filtering options, and payload placement are correct before starting a much larger attack. Once the command behaves as expected, switch to `rockyou.txt`.
 
 ### 📌 Steps:
+
 1. Create a crAPI user with a password found in `rockyou.txt`.
 2. Execute the dictionary attack using the following parameters:
    - Request body format: `{"email": "<email>", "password": "<password>"}`
    - Hide HTTP 401 responses.
-   - Set `Content-Type: application/json` header.
+   - Set the `Content-Type: application/json` header.
    - Use `rockyou.txt` as the wordlist.
 
-> **Tip**: Let the attack run in the background while doing other tasks—it may take a while.
+> **💡 Tip:** The full `rockyou.txt` wordlist is large, so the attack may take some time to complete.
+
+---
 
 ---
 
