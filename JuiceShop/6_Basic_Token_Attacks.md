@@ -31,7 +31,7 @@ In this exercise, you will test whether the Juice Shop backend properly validate
 **In some instance's issue with cookie's have been identified in this exercise, so please clear browser history prior to this exercise**
 
 1. **Create or reuse** a Juice Shop user account.  
-2. **Authenticate** with that user and **capture** a GET request to `/rest/user/whoami` (with a 200 OK response, and at JWT token).  
+2. **Authenticate** with that user and **capture** a GET request to `/rest/user/whoami` (There will be multiple GET request to the path, so it is the one with a 200 OK response, and a JWT token in the Authorization header).  
 3. Send the request to **Burp Repeater**.  
 4. Inspect the request: note the `Authorization` token present in both the **Header** and **Cookie**.  
 
