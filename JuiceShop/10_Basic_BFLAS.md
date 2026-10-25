@@ -10,12 +10,14 @@
 - Completion of Juice Shop Active Reconnaissance exercises.
 - Familiarity with Postman or similar API testing tools.
 
-## Explorer the API
-During API enumeration, the URL `http://localhost:3000/api/Products` was discovered. Explore this URL using Postman. How does it react to the HTTP methods GET, POST, and PUT?
+## Explorer the Endpoint
+During API enumeration, the URL `http://localhost:3000/api/Products` was discovered. Explore this endpoint using Postman. How does it react to the HTTP methods GET, POST, and PUT?
 
 Can you perform any actions you were not intended to, such as adding or editing resources?
 
 One method call might give you some information about the structure of the requests.
+  
+**These exercise can make parts of juiceshop crash. If that happens, shutdown the enviroment, remove all volumes and start it again**
 
 ## Add product
 From Postman, you should be able to add a product if you use the right HTTP method. You might also need some authorization. Remember, BFLA vulnerabilities allow users to execute functions on the API which they were never intended to.
